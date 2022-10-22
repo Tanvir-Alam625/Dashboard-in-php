@@ -10,7 +10,7 @@ require_once('../includes/header.php');
 <div class="logo">
 <a href="index.html">Neptune</a>
 </div>
-<p class="auth-description">Please sign-in to your account and continue to the dashboard.<br>Don't have an account? <a href="sign-up.html">Sign Up</a></p>
+<p class="auth-description">Please sign-in to your account and continue to the dashboard.<br>Don't have an account? <a href="signup.php">Sign Up</a></p>
 
 <div class="auth-credentials m-b-xxl">
 <label for="signInEmail" class="form-label">Email address</label>
@@ -21,7 +21,7 @@ require_once('../includes/header.php');
 </div>
 
 <div class="auth-submit">
-<a href="#" class="btn btn-primary">Sign In</a>
+<button type="submit" class="btn btn-primary">Sign In</button>
 </div>
 <div class="divider"></div>
 </div>
