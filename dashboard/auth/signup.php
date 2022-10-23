@@ -13,7 +13,7 @@ session_start();
 </div>
 <p class="auth-description">Please enter your credentials to create an account.<br>Already have an account? <a href="signin.php">Sign In</a></p>
 
-<form action="./signup-data.php" method="post">
+<form action="./signup-data.php" method="post" autocomplete="on">
 	<div class="auth-credentials m-b-xxl">
 		<label for="signUpUsername" class="form-label">Name</label>
 		<input name="name" type="text" 
@@ -62,6 +62,7 @@ session_start();
 		?>
 		<label for="signUpPassword"  class="form-label">Password</label>
 		<input type="password" name="password"
+		autoco
 		onclick="getShowPassword()" onblur="getHidePassword()"
 		show-hide="password"
 		id="signUpPassword" class="form-control m-b-md <?=isset($_SESSION['password_error']) ? 'is-invalid': ''?>"
@@ -93,12 +94,11 @@ session_start();
 		unset($_SESSION['Cpassword_error']);
 
 		?>
-		<div classclass="form-text m-b-md" >
-			<input type="checkbox"  class="input-checkbox" id="checkbox">
-			<label for="checkbox">Show Password</label>
-		</div>
 </div>
 
+<div class="auth-submit">
+<button type="submit" class="btn btn-primary">Sign Up</button>
+</div>
 </form>
 <!-- this is script tags -->
 <script>
