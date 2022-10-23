@@ -29,12 +29,12 @@ session_start();
 		 id="signUpUsername" aria-describedby="signUpUsername" placeholder="Enter Name">
 		<!-- name error Message  -->
 		<?php
-		if(isset($_SESSION['name_value'])){
+		if(isset($_SESSION['name_error'])){
 			?>
-			<p class="text-danger"><?= $_SESSION['name_value']?></p>
+			<p class="text-danger"><?= $_SESSION['name_error']?></p>
 			<?php
 		}
-		unset($_SESSION['name_value']);
+		unset($_SESSION['name_error']);
 
 		?>
 		<label for="signUpEmail" class="form-label">Email address</label>
@@ -61,17 +61,57 @@ session_start();
 
 		?>
 		<label for="signUpPassword"  class="form-label">Password</label>
-		<input type="password" name="password" class="form-control" id="signUpPassword" aria-describedby="signUpPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
-		<div id="emailHelp" class="form-text m-b-md">Password must be minimum 8 characters length*</div>
+		<input type="password" name="password"
+		onclick="getShowPassword()" onblur="getHidePassword()"
+		show-hide="password"
+		id="signUpPassword" class="form-control m-b-md <?=isset($_SESSION['password_error']) ? 'is-invalid': ''?>"
+		  aria-describedby="signUpPassword" >
+		<!-- password error message  -->
+		 <?php
+		if(isset($_SESSION['password_error'])){
+			?>
+			<p class="text-danger"><?= $_SESSION['password_error']?></p>
+			<?php
+		}
+		unset($_SESSION['password_error']);
+
+		?>
 
 		<label for="signUpPassword" class="form-label">Confirm Password</label>
-		<input type="password" name="confirm-password" class="form-control" id="signUpPassword" aria-describedby="signUpPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+		<input type="password" name="confirm-password"
+		show-hide="password"
+		onclick="getShowPassword()" onblur="getHidePassword()"
+		 class="form-control m-b-md <?=isset($_SESSION['Cpassword_error']) ? 'is-invalid': ''?>"
+
+		 id="signUpPassword" aria-describedby="signUpPassword" >
+		<?php
+		if(isset($_SESSION['Cpassword_error'])){
+			?>
+			<p class="text-danger"><?= $_SESSION['Cpassword_error']?></p>
+			<?php
+		}
+		unset($_SESSION['Cpassword_error']);
+
+		?>
+		<div classclass="form-text m-b-md" >
+			<input type="checkbox"  class="input-checkbox" id="checkbox">
+			<label for="checkbox">Show Password</label>
+		</div>
 </div>
 
-<div class="auth-submit">
-<button type="submit" class="btn btn-primary">Sign Up</button>
-</div>
 </form>
+<!-- this is script tags -->
+<script>
+	const passcode = document.querySelectorAll('[show-hide="password"]');
+	function getHidePassword(){
+		passcode[0].type= 'password';
+		passcode[1].type= 'password';
+	}
+	function getShowPassword(){
+		passcode[0].type= 'text';
+		passcode[1].type= 'text';
+	}
+</script>
 <div class="divider"></div>
 </div>
 </div>

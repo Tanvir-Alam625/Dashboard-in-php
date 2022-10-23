@@ -26,21 +26,39 @@ if($name){
 
 // email field validation logic 
 if($email){
-	if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+	if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+		echo $email;
+	}else{
 		$_SESSION['email_value'] = $email;
 		$flag= true;
 		$_SESSION['email_error'] = 'Invalid email!';
-	}else{
-	echo $email;
 	}
-
 }else{
 	$flag= true;
 	$_SESSION['email_error'] = 'Email field required!';
 }
 
+// password validation logic 
+if($password){
+	$pattern = '/^(?=.*[0-9])(?=.*[A-Z]).{8,20}$/';
+	if(preg_match($pattern, $password)) {
+		echo "ok";
+	}else{
+		$flag= true;
+		$_SESSION['password_error'] = 'Password must be minimum 8 characters length. At list one decimal number, lower case, upper case, charecter, number!';
+	}
+}else{
+	$flag= true;
+	$_SESSION['password_error'] = 'Password field required!';
+}
 
+// confirm password 
+if($password !== $Cpassword){
+	$flag= true;
+	$_SESSION['Cpassword_error'] = 'Your password not match!';
+}
 
+// redirect logic
 if($flag){
 	header('location:./signup.php');
 	if($name){
