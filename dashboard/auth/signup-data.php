@@ -4,7 +4,7 @@ $name = htmlspecialchars($_POST['name']);
 $email = htmlspecialchars($_POST['email']);
 $password = htmlspecialchars($_POST['password']);
 $Cpassword = htmlspecialchars($_POST['confirm-password']);
-
+$hashed_password = sha1($password);
 $flag = false;
 
 // name field validation logic 
@@ -12,12 +12,10 @@ if($name){
 	$whitespace_slice = str_replace(" ", "", $name);
 	if(ctype_alpha($whitespace_slice)){
 		if(str_word_count($name) > 3){
-			// $_SESSION['name_value'] = $name;
 			$flag= true;
 			$_SESSION['name_error'] = 'Please enter the short name!';
 		}
 	}else{
-		// $_SESSION['name_value'] = $name;
 		$flag= true;
 		$_SESSION['name_error'] = 'Name must be String!';		
 	}
@@ -29,7 +27,6 @@ if($name){
 // email field validation logic 
 if($email){
 	if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-		// $_SESSION['email_value'] = $email;
 		$flag= true;
 		$_SESSION['email_error'] = 'Invalid email!';
 	}
@@ -70,6 +67,23 @@ if($flag){
 	if($email){
 	$_SESSION['email_value'] = $email;	
 	}
+}else{
+
+// DBS connection 
+	$db_connect = mysqli_connect('localhost','root','','kufa');
+	$db_query = "INSERT INTO `users` (Name, Email, Password) VALUES ('$name', '$email', '$hashed_password')";
+	echo mysqli_query($db_connect, $db_query);
 }
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
