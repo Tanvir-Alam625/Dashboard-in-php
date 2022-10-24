@@ -11,15 +11,13 @@ $flag = false;
 if($name){
 	$whitespace_slice = str_replace(" ", "", $name);
 	if(ctype_alpha($whitespace_slice)){
-		if(str_word_count($name) < 4){
-			echo $name;
-		}else{
-			$_SESSION['name_value'] = $name;
+		if(str_word_count($name) > 3){
+			// $_SESSION['name_value'] = $name;
 			$flag= true;
 			$_SESSION['name_error'] = 'Please enter the short name!';
 		}
 	}else{
-		$_SESSION['name_value'] = $name;
+		// $_SESSION['name_value'] = $name;
 		$flag= true;
 		$_SESSION['name_error'] = 'Name must be String!';		
 	}
@@ -28,14 +26,10 @@ if($name){
 	$_SESSION['name_error'] = 'Name field required!';
 }
 
-
-
 // email field validation logic 
 if($email){
-	if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-		echo $email;
-	}else{
-		$_SESSION['email_value'] = $email;
+	if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+		// $_SESSION['email_value'] = $email;
 		$flag= true;
 		$_SESSION['email_error'] = 'Invalid email!';
 	}
@@ -47,21 +41,24 @@ if($email){
 // password validation logic 
 if($password){
 	$pattern = '/^(?=.*[0-9])(?=.*[A-Z]).{8,20}$/';
-	if(preg_match($pattern, $password)) {
-		echo "ok";
-	}else{
+	if(!preg_match($pattern, $password)) {
 		$flag= true;
 		$_SESSION['password_error'] = 'Password must be minimum 8 characters length. At list one decimal number, lower case, upper case, charecter, number!';
-	}
+	}	
 }else{
 	$flag= true;
 	$_SESSION['password_error'] = 'Password field required!';
 }
 
 // confirm password 
-if($password !== $Cpassword){
+if($Cpassword){
+	if($password !== $Cpassword){
+		$flag= true;
+		$_SESSION['Cpassword_error'] = 'Your password not match!';
+	}
+}else {
 	$flag= true;
-	$_SESSION['Cpassword_error'] = 'Your password not match!';
+	$_SESSION['Cpassword_error'] = 'Confirm password field required!';
 }
 
 // redirect logic
@@ -74,4 +71,5 @@ if($flag){
 	$_SESSION['email_value'] = $email;	
 	}
 }
+
 ?>
