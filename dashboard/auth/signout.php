@@ -1,2 +1,4 @@
 <?php
-echo "signout page";
+header('location: ./signin.php');
+session_destroy();
+?>

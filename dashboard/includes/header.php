@@ -1,3 +1,10 @@
+<?php
+    require_once('./db_connect/db_connect.php');
+    session_start();
+    if(!isset($_SESSION['auth_email'])){
+        header('location: oops/oops.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -401,7 +408,7 @@
                                     <a class="nav-link active" href="#">Applications</a>
                                 </li> -->
                                 <li class="nav-item hidden-on-mobile">
-                                    <a class="nav-link rounded  bg-danger text-white" href="../auth/signout.php">SignOut</a>
+                                    <a class="nav-link rounded  bg-danger text-white" href="./auth/signout.php">SignOut</a>
                                 </li>
                                 <!-- <li class="nav-item hidden-on-mobile">
                                     <a class="nav-link" href="#">Reports</a>
