@@ -3,28 +3,27 @@ require_once('../includes/header.php');
 ?>
 
 <div class="app app-auth-sign-in align-content-stretch d-flex flex-wrap justify-content-end">
-<div class="app-auth-background">
+    <div class="app-auth-background"></div>
+    <form action="./signin-data.php" method="post">
+        <div class="app-auth-container">
+            <div class="logo">
+            <a href="index.html">Neptune</a>
+            </div>
+            <p class="auth-description">Please sign-in to your account and continue to the dashboard.<br>Don't have an account? <a href="signup.php">Sign Up</a></p>
 
-</div>
-<div class="app-auth-container">
-<div class="logo">
-<a href="index.html">Neptune</a>
-</div>
-<p class="auth-description">Please sign-in to your account and continue to the dashboard.<br>Don't have an account? <a href="signup.php">Sign Up</a></p>
+            <div class="auth-credentials m-b-xxl">
+                <label for="signInEmail" class="form-label">Email address</label>
+                <input name="email" type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com">
 
-<div class="auth-credentials m-b-xxl">
-<label for="signInEmail" class="form-label">Email address</label>
-<input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com">
+                <label for="signInPassword" class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" id="signInPassword" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+            </div>
 
-<label for="signInPassword" class="form-label">Password</label>
-<input type="password" class="form-control" id="signInPassword" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
-</div>
-
-<div class="auth-submit">
-<button type="submit" class="btn btn-primary">Sign In</button>
-</div>
-<div class="divider"></div>
-</div>
+            <div class="auth-submit">
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </div>
+        </div>        
+    </form>
 </div>
 <?php
 require_once('../includes/footer.php');

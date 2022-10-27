@@ -1,32 +1,42 @@
 <?php
 session_start();
+require_once('../db_connect/db_connect.php');
 $name = htmlspecialchars($_POST['name']);
 $email = htmlspecialchars($_POST['email']);
 $password = htmlspecialchars($_POST['password']);
 $Cpassword = htmlspecialchars($_POST['confirm-password']);
 $hashed_password = sha1($password);
 $flag = false;
-
+$db_query_check = "SELECT COUNT(*) as 'Result' FROM users WHERE Email='$email';";
+$db_object_convert= mysqli_query($db_connect, $db_query_check);
+$db_result = mysqli_fetch_assoc($db_object_convert);
 // name field validation logic 
 if($name){
 	$whitespace_slice = str_replace(" ", "", $name);
 	if(ctype_alpha($whitespace_slice)){
 		if(str_word_count($name) > 3){
-			$flag= true;
+			$flag = true;
 			$_SESSION['name_error'] = 'Please enter the short name!';
 		}
 	}else{
 		$flag= true;
-		$_SESSION['name_error'] = 'Name must be String!';		
+		$_SESSION['name_error'] = 'Name muste be String!';		
 	}
 }else{
 	$flag= true;
 	$_SESSION['name_error'] = 'Name field required!';
 }
 
-// email field validation logic 
+// email field validation logic
 if($email){
-	if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+	if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+		if($db_result['result']){
+			$flag= true;
+		    $_SESSION['email_error'] = 'Email Already Exists!';		
+		}else{
+			header('location: ./signin.php');
+		}
+	}else{
 		$flag= true;
 		$_SESSION['email_error'] = 'Invalid email!';
 	}
@@ -57,7 +67,6 @@ if($Cpassword){
 	$flag= true;
 	$_SESSION['Cpassword_error'] = 'Confirm password field required!';
 }
-
 // redirect logic
 if($flag){
 	header('location:./signup.php');
