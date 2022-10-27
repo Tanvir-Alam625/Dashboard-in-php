@@ -1,6 +1,16 @@
 
 <?php
 require_once('./includes/header.php');
+$email =$_SESSION['auth_email'];
+
+// user name query
+$db_name_query = "SELECT Name, ID FROM users WHERE Email='$email';";
+$db_name = mysqli_query($db_connect, $db_name_query);
+$db_name_result = mysqli_fetch_assoc($db_name);
+// count all users query 
+$db_users_query = "SELECT COUNT(*) AS 'result' FROM users;";
+$db_users = mysqli_query($db_connect, $db_users_query);
+$db_users_result = mysqli_fetch_assoc($db_users);
 ?>
 
 <div class="app-content">
@@ -10,7 +20,10 @@ require_once('./includes/header.php');
                 <div class="col">
                     <div class="page-description">
                         <h1>Dashboard</h1>
-                        <p class="user-state-info"> Hello Tanvir < ex@gmail.com ></p>
+                        <?php 
+                      
+                        ?>
+                        <p class="user-state-info"> Hello, <?= $db_name_result['Name']?> < <?= $_SESSION['auth_email']?> ></p>
                     </div>
                 </div>
             </div>
@@ -77,7 +90,7 @@ require_once('./includes/header.php');
                 <div class="col-xl-6">
                     <div class="card widget widget-list">
                         <div class="card-header">
-                            <h5 class="card-title">Active Users<span class="badge badge-success badge-style-light">14 Users</span></h5>
+                            <h5 class="card-title">Active Users<span class="badge badge-success badge-style-light"><?= $db_users_result['result']?> Users</span></h5>
                         </div>
                         <div class="card-body">
                             <span class="text-muted m-b-xs d-block">showing 5 out of 23 active users.</span>
