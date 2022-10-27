@@ -7,10 +7,15 @@ $email =$_SESSION['auth_email'];
 $db_name_query = "SELECT Name, ID FROM users WHERE Email='$email';";
 $db_name = mysqli_query($db_connect, $db_name_query);
 $db_name_result = mysqli_fetch_assoc($db_name);
+
 // count all users query 
-$db_users_query = "SELECT COUNT(*) AS 'result' FROM users;";
+$db_users_count_query = "SELECT COUNT(*) AS 'result' FROM users";
+$db_users_count = mysqli_query($db_connect, $db_users_count_query);
+$db_users_count_result = mysqli_fetch_assoc($db_users_count);
+
+// show all users query 
+$db_users_query = "SELECT Name,ID,Email FROM users LIMIT 5";
 $db_users = mysqli_query($db_connect, $db_users_query);
-$db_users_result = mysqli_fetch_assoc($db_users);
 ?>
 
 <div class="app-content">
@@ -21,7 +26,6 @@ $db_users_result = mysqli_fetch_assoc($db_users);
                     <div class="page-description">
                         <h1>Dashboard</h1>
                         <?php 
-                      
                         ?>
                         <p class="user-state-info"> Hello, <?= $db_name_result['Name']?> < <?= $_SESSION['auth_email']?> ></p>
                     </div>
@@ -90,66 +94,31 @@ $db_users_result = mysqli_fetch_assoc($db_users);
                 <div class="col-xl-6">
                     <div class="card widget widget-list">
                         <div class="card-header">
-                            <h5 class="card-title">Active Users<span class="badge badge-success badge-style-light"><?= $db_users_result['result']?> Users</span></h5>
+                            <h5 class="card-title">Active Users<span class="badge badge-success badge-style-light"><?= $db_users_count_result['result']?> Users</span></h5>
                         </div>
                         <div class="card-body">
-                            <span class="text-muted m-b-xs d-block">showing 5 out of 23 active users.</span>
+                            <span class="text-muted m-b-xs d-block">showing 5 out of <?= $db_users_count_result['result']?> active users.</span>
                             <ul class="widget-list-content list-unstyled">
-                                <li class="widget-list-item widget-list-item-green">
-                                    <span class="widget-list-item-icon"><i class="material-icons-outlined">article</i></span>
+                                <!-- show users  -->
+                                <?php
+                                $user_id = 0; 
+                                foreach ($db_users as  $user) {
+                                    $user_id++; 
+                                    ?>
+                                    <li class="widget-list-item widget-list-item-green">
+                                    <span class="widget-list-item-icon"><p class="my-2 py-0"><?=$user_id ?></p></span>
                                     <span class="widget-list-item-description">
                                         <a href="#" class="widget-list-item-description-title">
-                                            Dashboard UI optimisations
+                                            <?= $user['Name'] ?>
                                         </a>
                                         <span class="widget-list-item-description-subtitle">
-                                            Oskar Hudson
+                                            <?= $user["Email"]?>
                                         </span>
                                     </span>
                                 </li>
-                                <li class="widget-list-item widget-list-item-blue">
-                                    <span class="widget-list-item-icon"><i class="material-icons-outlined">verified_user</i></span>
-                                    <span class="widget-list-item-description">
-                                        <a href="#" class="widget-list-item-description-title">
-                                            Mailbox cleanup
-                                        </a>
-                                        <span class="widget-list-item-description-subtitle">
-                                            Woodrow Hawkins
-                                        </span>
-                                    </span>
-                                </li>
-                                <li class="widget-list-item widget-list-item-purple">
-                                    <span class="widget-list-item-icon"><i class="material-icons-outlined">watch_later</i></span>
-                                    <span class="widget-list-item-description">
-                                        <a href="#" class="widget-list-item-description-title">
-                                            Header scroll bugfix
-                                        </a>
-                                        <span class="widget-list-item-description-subtitle">
-                                            Sky Meyers
-                                        </span>
-                                    </span>
-                                </li>
-                                <li class="widget-list-item widget-list-item-yellow">
-                                    <span class="widget-list-item-icon"><i class="material-icons-outlined">extension</i></span>
-                                    <span class="widget-list-item-description">
-                                        <a href="#" class="widget-list-item-description-title">
-                                            Localization for file manager
-                                        </a>
-                                        <span class="widget-list-item-description-subtitle">
-                                            Oskar Hudson
-                                        </span>
-                                    </span>
-                                </li>
-                                <li class="widget-list-item widget-list-item-red">
-                                    <span class="widget-list-item-icon"><i class="material-icons-outlined">invert_colors</i></span>
-                                    <span class="widget-list-item-description">
-                                        <a href="#" class="widget-list-item-description-title">
-                                            New E-commerce UX/UI design
-                                        </a>
-                                        <span class="widget-list-item-description-subtitle">
-                                            Oskar Hudson
-                                        </span>
-                                    </span>
-                                </li>
+                                    <?php
+                                }
+                                ?>
                             </ul>
                         </div>
                     </div>
