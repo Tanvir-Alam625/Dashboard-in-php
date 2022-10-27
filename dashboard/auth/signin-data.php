@@ -12,7 +12,8 @@ require_once('../db_connect/db_connect.php');
     $signin_query_result = mysqli_fetch_assoc($signin_query_check);
     echo $signin_query_result['result'];
     if($signin_query_result['result'] == 1){
-        header('location: ../index.php');
+        $_SESSION["auth_email"]= $email;
+        header('location: ../home.php');
     }else{
         $flag = true;
         $_SESSION["signin_error"]= "Wrong credentials!";

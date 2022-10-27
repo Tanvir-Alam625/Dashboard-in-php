@@ -1,5 +1,5 @@
 <?php
-require_once('../includes/header.php');
+require_once('./includes/header.php');
 session_start();
 ?>
 
@@ -63,7 +63,7 @@ session_start();
     </form>
 </div>
 <?php
-require_once('../includes/footer.php');
+require_once('./includes/footer.php');
 ?>
 
 
