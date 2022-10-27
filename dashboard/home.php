@@ -14,11 +14,33 @@ $db_users_count = mysqli_query($db_connect, $db_users_count_query);
 $db_users_count_result = mysqli_fetch_assoc($db_users_count);
 
 // show all users query 
-$db_users_query = "SELECT Name,ID,Email FROM users LIMIT 5";
+$db_users_query = "SELECT Name,ID,Email FROM users LIMIT 15";
 $db_users = mysqli_query($db_connect, $db_users_query);
 ?>
 
 <div class="app-content">
+    <style>
+        .overflow-custome-class{
+            height:345px;
+            overflow-y:scroll;
+        }
+        .overflow-custome-class::-webkit-scrollbar{
+        width: 10px;
+        }
+        .overflow-custome-class::-webkit-scrollbar-track{
+        height: 100%;
+        }
+        .overflow-custome-class::-webkit-scrollbar-thumb{
+        background-color: #E7ECF8;
+        border-radius:20px;
+        transition: 400ms ease-in-out;
+        }
+        .overflow-custome-class::-webkit-scrollbar-thumb:hover{
+        background-color: #DCD9CA;
+        }
+
+    </style>
+
     <div class="content-wrapper">
         <div class="container">
             <div class="row">
@@ -97,8 +119,8 @@ $db_users = mysqli_query($db_connect, $db_users_query);
                             <h5 class="card-title">Active Users<span class="badge badge-success badge-style-light"><?= $db_users_count_result['result']?> Users</span></h5>
                         </div>
                         <div class="card-body">
-                            <span class="text-muted m-b-xs d-block">showing 5 out of <?= $db_users_count_result['result']?> active users.</span>
-                            <ul class="widget-list-content list-unstyled">
+                            <span class="text-muted m-b-xs d-block">showing 15 out of <?= $db_users_count_result['result']?> active users.</span>
+                            <ul class="widget-list-content list-unstyled overflow-custome-class" >
                                 <!-- show users  -->
                                 <?php
                                 $user_id = 0; 

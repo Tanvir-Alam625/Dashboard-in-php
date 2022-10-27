@@ -51,7 +51,7 @@
                 <div class="sidebar-user-switcher user-activity-online">
                     <a href="#">
                         <!-- <img src="./assets/images/avatars/avatar.png"> -->
-                        <img src="./assets/images/avatars/avatar.png">
+                        <img src="https://placeimg.com/192/192/people">
                         <span class="activity-indicator"></span>
                         <span class="user-info-text">Chloe<br><span class="user-state-info">On a call</span></span>
                     </a>
@@ -409,7 +409,7 @@
                                     <a class="nav-link active" href="#">Applications</a>
                                 </li> -->
                                 <li class="nav-item hidden-on-mobile">
-                                    <a class="nav-link rounded  bg-danger text-white" href="./auth/signout.php">SignOut</a>
+                                    <a class=" nav-link rounded" style="background:#FCE3E5; color:#FF4857;" href="./auth/signout.php">SignOut</a>
                                 </li>
                                 <!-- <li class="nav-item hidden-on-mobile">
                                     <a class="nav-link" href="#">Reports</a>
