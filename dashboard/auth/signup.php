@@ -81,7 +81,7 @@ session_start();
 		<label for="signUpPassword" class="form-label">Confirm Password</label>
 		<input type="password" name="confirm-password"
 		show-hide="password"
-		onclick="getShowPassword()" onblur="getHidePassword()"
+		onfocus="getShowPassword()" onblur="getHidePassword()"
 		 class="form-control m-b-md <?=isset($_SESSION['Cpassword_error']) ? 'is-invalid': ''?>"
 
 		 id="signUpPassword" aria-describedby="signUpPassword" >

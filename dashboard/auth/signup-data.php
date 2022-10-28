@@ -7,7 +7,7 @@ $password = htmlspecialchars($_POST['password']);
 $Cpassword = htmlspecialchars($_POST['confirm-password']);
 $hashed_password = sha1($password);
 $flag = false;
-$db_query_check = "SELECT COUNT(*) as 'Result' FROM users WHERE Email='$email';";
+$db_query_check = "SELECT COUNT(*) as 'result' FROM users WHERE Email='$email';";
 $db_object_convert= mysqli_query($db_connect, $db_query_check);
 $db_result = mysqli_fetch_assoc($db_object_convert);
 // name field validation logic 
@@ -83,16 +83,4 @@ if($flag){
 	$db_query = "INSERT INTO `users` (Name, Email, Password) VALUES ('$name', '$email', '$hashed_password')";
 	echo mysqli_query($db_connect, $db_query);
 }
-
-
-
-
-
-
-
-
-
-
-
-
 ?>
