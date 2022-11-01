@@ -12,6 +12,28 @@ $db_name_result = mysqli_fetch_assoc($db_name);
 ?>
 
 <div class="app-content">
+    <!-- buttons tag style  -->
+    <style>
+    .info-btn,
+    .security-btn{
+        margin: 20px 10px;
+        padding: 10px;
+        font-size: 20px;
+        border: none;
+        outline: none;
+        background: transparent;
+        color: grey;
+    }
+    .btn-active{
+        color: #2269F5;
+    }
+    .disabled{
+        display: none;
+    }
+    .active{
+        display: block;
+    }
+    </style>
     <div class="content-wrapper">
         <div class="container">
             <div class="row">
@@ -19,15 +41,16 @@ $db_name_result = mysqli_fetch_assoc($db_name);
                     <div class="page-description pb-0">
                         <h1>Profile</h1>
                         <div class="profile-tab mt-6 pb-2">
-                            <button class="info-btn">Info</button>
-                            <button class="security-btn">Security</button>
+                            <button id="info-tab-btn" class="info-btn btn-active">Info</button>
+                            <button id="security-tab-btn" class="security-btn">Security</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card">
+                    <!-- info card container  -->
+                    <div class="card" id="info-container">
                         <div class="card-header">
                             <h5 class="card-title">Info</h5>
                         </div>
@@ -35,15 +58,45 @@ $db_name_result = mysqli_fetch_assoc($db_name);
                             <div class="example-container">
                                 <div class="example-content">
                                     <form action="" method="post">
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text" id="basic-addon1">@</span>
-                                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                        <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Name</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"  aria-label="Username" name="name" aria-describedby="basic-addon1">
                                         </div>
-                                        <div class="input-group mb-3">
-                                            <span class="input-group-text" id="basic-addon1">@</span>
-                                            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput2" class="form-label">Email address</label>
+                                            <input type="tel" class="form-control" name="phone" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput3" class="form-label">Email address</label>
+                                            <input type="file" class="form-control" name="phone" aria-label="Username" id="exampleFormControlInput3" aria-describedby="basic-addon1">
                                         </div>
                                         <button class="btn btn-primary" name="update-info">Update Info</button>
+                                    </form>
+                                </div>             
+                            </div>
+                        </div>
+                    </div>
+                    <!-- security card container  -->
+                    <div class="card disabled" id="security-container">
+                        <div class="card-header">
+                            <h5 class="card-title">Security</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="example-container">
+                                <div class="example-content">
+                                    <form action="" method="post">
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput2" class="form-label">Current Password</label>
+                                            <input type="tel" class="form-control" name="phone" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput2" class="form-label">New Password</label>
+                                            <input type="tel" class="form-control" name="phone" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput2" class="form-label">Confirm Password</label>
+                                            <input type="tel" class="form-control" name="phone" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                        </div>
                                         <button class="btn btn-primary" name="change-password">Change Password</button>
                                     </form>
                                 </div>             
@@ -389,6 +442,36 @@ $db_name_result = mysqli_fetch_assoc($db_name);
     </div>
 </div>
 </div>
+<!-- tab script tag  -->
+<script>
+    // selectors
+    const infoBtn = document.getElementById("info-tab-btn");
+    const securityBtn = document.getElementById("security-tab-btn");
+    const infoContent = document.getElementById("info-container");
+    const securityContent = document.getElementById("security-container");
+    // info event listener
+    infoBtn.addEventListener('click',()=>{
+        securityContent.classList.remove("active");
+        securityContent.classList.add("disabled");
+
+        infoContent.classList.add("active");
+        infoContent.classList.remove("disabled");
+
+        infoBtn.classList.add("btn-active");
+        securityBtn.classList.remove("btn-active");
+    })
+    // security event listener
+    securityBtn.addEventListener('click',()=>{
+        securityContent.classList.add("active");
+        securityContent.classList.remove("disabled");
+
+        infoContent.classList.add("disabled");
+        infoContent.classList.remove("active");
+
+        infoBtn.classList.remove("btn-active");
+        securityBtn.classList.add("btn-active");
+    })
+</script>
 </div>
 <?php
     require_once('./includes/footer.php');
