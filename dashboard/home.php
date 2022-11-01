@@ -7,7 +7,7 @@ $email =$_SESSION['auth_email'];
 $db_name_query = "SELECT Name, ID FROM users WHERE Email='$email';";
 $db_name = mysqli_query($db_connect, $db_name_query);
 $db_name_result = mysqli_fetch_assoc($db_name);
-
+$_SESSION["auth_id"]= $db_name_result['ID'];
 // count all users query 
 $db_users_count_query = "SELECT COUNT(*) AS 'result' FROM users";
 $db_users_count = mysqli_query($db_connect, $db_users_count_query);

@@ -16,8 +16,9 @@ $db_name_result = mysqli_fetch_assoc($db_name);
     <style>
     .info-btn,
     .security-btn{
-        margin: 20px 10px;
-        padding: 10px;
+        margin-right:10px;
+        padding-top: 10px;
+        padding-right: 10px;
         font-size: 20px;
         border: none;
         outline: none;
@@ -41,23 +42,40 @@ $db_name_result = mysqli_fetch_assoc($db_name);
                     <div class="page-description pb-0">
                         <h1>Profile</h1>
                         <div class="profile-tab mt-6 pb-2">
-                            <button id="info-tab-btn" class="info-btn btn-active">Info</button>
-                            <button id="security-tab-btn" class="security-btn">Security</button>
+                            <button id="info-tab-btn" class="info-btn <?=isset($_SESSION["validation-error"])? ' ': 'btn-active'?>">Info</button>
+                            <button id="security-tab-btn" class="security-btn <?=isset($_SESSION["validation-error"])? 'btn-active': ''?>">Security</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
+            
+            <?php
+            if(isset($_SESSION['success_message'])){?>
+            <div class="d-flex justify-content-center">
+                <div class="w-40 p-2 mb-2 d-flex justify-content-center align-items-center mx-auto rounded " style="background:green;" role="">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="text-white " height="20px" width="20px" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <p class="text-white text-center ml-10 my-0 p-10">
+                        <?= $_SESSION['success_message']?>
+                    </p>
+                </div>
+            </div>
+            <?php
+            }
+            unset($_SESSION['success_message']);
+            ?>
                 <div class="col-md-12">
                     <!-- info card container  -->
-                    <div class="card" id="info-container">
+                    <div class="card  <?=isset($_SESSION["validation-error"])? 'disabled': 'active'?>" id="info-container">
                         <div class="card-header">
                             <h5 class="card-title">Info</h5>
                         </div>
                         <div class="card-body">
                             <div class="example-container">
                                 <div class="example-content">
-                                    <form action="" method="post">
+                                    <form action="./auth/profile-info-data.php" method="post">
                                         <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Name</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1"  aria-label="Username" name="name" aria-describedby="basic-addon1">
@@ -70,34 +88,62 @@ $db_name_result = mysqli_fetch_assoc($db_name);
                                             <label for="exampleFormControlInput3" class="form-label">Email address</label>
                                             <input type="file" class="form-control" name="phone" aria-label="Username" id="exampleFormControlInput3" aria-describedby="basic-addon1">
                                         </div>
-                                        <button class="btn btn-primary" name="update-info">Update Info</button>
+                                        <button class="btn btn-primary" value="info" name="update-info">Update Info</button>
                                     </form>
                                 </div>             
                             </div>
                         </div>
                     </div>
                     <!-- security card container  -->
-                    <div class="card disabled" id="security-container">
+                    <div class="card <?=isset($_SESSION["validation-error"])? 'active': 'disabled'?>"  id="security-container">
                         <div class="card-header">
                             <h5 class="card-title">Security</h5>
                         </div>
                         <div class="card-body">
                             <div class="example-container">
                                 <div class="example-content">
-                                    <form action="" method="post">
+                                    <form action="./auth/profile-security-data.php" method="post">
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput2" class="form-label">Current Password</label>
-                                            <input type="tel" class="form-control" name="phone" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                            <input type="password" class="form-control" name="current_password" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                            <?php
+                                            if(isset($_SESSION['current_password_error'])){
+                                                ?>
+                                                <p class="text-danger"><?= $_SESSION['current_password_error']?></p>
+                                                <?php
+                                            }
+                                            unset($_SESSION['current_password_error']);
+
+                                            ?>
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput2" class="form-label">New Password</label>
-                                            <input type="tel" class="form-control" name="phone" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                            <input type="password" class="form-control" name="new_password" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                            <?php
+                                            if(isset($_SESSION['new_password_error'])){
+                                                ?>
+                                                <p class="text-danger"><?= $_SESSION['new_password_error']?></p>
+                                                <?php
+                                            }
+                                            unset($_SESSION['new_password_error']);
+
+                                            ?>
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput2" class="form-label">Confirm Password</label>
-                                            <input type="tel" class="form-control" name="phone" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                            <input type="password" class="form-control" name="confirm_password" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+
+                                            <?php
+                                            if(isset($_SESSION['confirm_password_error'])){
+                                                ?>
+                                                <p class="text-danger"><?= $_SESSION['confirm_password_error']?></p>
+                                                <?php
+                                            }
+                                            unset($_SESSION['confirm_password_error']);
+
+                                            ?>
                                         </div>
-                                        <button class="btn btn-primary" name="change-password">Change Password</button>
+                                        <button value="change-password" class="btn btn-primary" name="change-password">Change Password</button>
                                     </form>
                                 </div>             
                             </div>
