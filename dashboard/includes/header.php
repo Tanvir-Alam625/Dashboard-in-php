@@ -63,11 +63,15 @@
                         Apps
                     </li>
                     <li class="active-page">
-                        <a href="index.html" class="active"><i class="material-icons-two-tone">dashboard</i>Dashboard</a>
+                        <a href="home.php" class="active"><i class="material-icons-two-tone">dashboard</i>Dashboard</a>
+                    </li>
+                    <li class="">
+                        <a href="profile.php" class="active"><i class="material-icons-two-tone">face</i>Profile</a>
                     </li>
                     <!-- <li>
                         <a href="mailbox.html"><i class="material-icons-two-tone">inbox</i>Mailbox<span class="badge rounded-pill badge-danger float-end">87</span></a>
-                    </li>
+                    </li> -->
+                    <!-- 
                     <li>
                         <a href="file-manager.html"><i class="material-icons-two-tone">cloud_queue</i>File Manager</a>
                     </li>
