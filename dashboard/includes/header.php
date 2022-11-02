@@ -4,6 +4,10 @@
     if(!isset($_SESSION['auth_email'])){
         header('location: oops/oops.php');
     }
+    $email = $_SESSION['auth_email'];
+    $profile_query = "SELECT Name, Image FROM users WHERE Email='$email'";
+    $profile_db = mysqli_query($db_connect, $profile_query);
+    $profile_query_result = mysqli_fetch_assoc($profile_db);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,10 +54,9 @@
                 <a href="./home.php" class="logo-icon"><span class="logo-text">Neptune</span></a>
                 <div class="sidebar-user-switcher user-activity-online">
                     <a href="#">
-                        <!-- <img src="./assets/images/avatars/avatar.png"> -->
-                        <img src="https://placeimg.com/192/192/people">
+                        <img src="./img/profile-img/<?= $profile_query_result["Image"]?>">
                         <span class="activity-indicator"></span>
-                        <span class="user-info-text">Chloe<br><span class="user-state-info">On a call</span></span>
+                        <span class="user-info-text"><?= $profile_query_result["Name"]?><br><span class="user-state-info">On a call</span></span>
                     </a>
                 </div>
             </div>

@@ -75,7 +75,7 @@ $db_name_result = mysqli_fetch_assoc($db_name);
                         <div class="card-body">
                             <div class="example-container">
                                 <div class="example-content">
-                                    <form action="./auth/profile-info-data.php" method="post">
+                                    <form action="./auth/profile-info-data.php" method="post" enctype="multipart/form-data">
                                         <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Name</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1" value="<?= $_SESSION["name_value"]?>"  aria-label="Username" name="name" aria-describedby="basic-addon1">
@@ -102,8 +102,8 @@ $db_name_result = mysqli_fetch_assoc($db_name);
                                             ?>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleFormControlInput3" class="form-label">Upload Image</label>
-                                            <input type="file" class="form-control" name="profile_pic" aria-label="Username" id="exampleFormControlInput3" aria-describedby="basic-addon1">
+                                            <label for="formFile" class="form-label">Upload Image</label>
+                                            <input type="file" class="form-control" name="profile_pic" aria-label="Username" id="formFile" aria-describedby="basic-addon1">
                                         </div>
                                         <button class="btn btn-primary" value="info" name="update-info">Update Info</button>
                                     </form>
