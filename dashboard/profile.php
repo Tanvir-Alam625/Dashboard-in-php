@@ -49,7 +49,7 @@ $db_name_result = mysqli_fetch_assoc($db_name);
                 </div>
             </div>
             <div class="row">
-            
+            <!-- succes message  -->
             <?php
             if(isset($_SESSION['success_message'])){?>
             <div class="d-flex justify-content-center">
@@ -78,15 +78,32 @@ $db_name_result = mysqli_fetch_assoc($db_name);
                                     <form action="./auth/profile-info-data.php" method="post">
                                         <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Name</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1"  aria-label="Username" name="name" aria-describedby="basic-addon1">
+                                        <input type="text" class="form-control" id="exampleFormControlInput1" value="<?= $_SESSION["name_value"]?>"  aria-label="Username" name="name" aria-describedby="basic-addon1">
+                                        <?php
+                                            if(isset($_SESSION['name_error'])){
+                                                ?>
+                                                <p class="text-danger"><?= $_SESSION['name_error']?></p>
+                                                <?php
+                                            }
+                                            unset($_SESSION['name_error']);
+
+                                            ?>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleFormControlInput2" class="form-label">Email address</label>
-                                            <input type="tel" class="form-control" name="phone" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                            <label for="exampleFormControlInput2" class="form-label">Phone Number</label>
+                                            <input type="tel" class="form-control" value="<?= isset($_SESSION["phone_value"]) ? $_SESSION["phone_value"]: '' ?>" name="phone" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                            <?php
+                                            if(isset($_SESSION['phone_error'])){
+                                                ?>
+                                                <p class="text-danger"><?= $_SESSION['phone_error']?></p>
+                                                <?php
+                                            }
+                                            unset($_SESSION['phone_error']);
+                                            ?>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="exampleFormControlInput3" class="form-label">Email address</label>
-                                            <input type="file" class="form-control" name="phone" aria-label="Username" id="exampleFormControlInput3" aria-describedby="basic-addon1">
+                                            <label for="exampleFormControlInput3" class="form-label">Upload Image</label>
+                                            <input type="file" class="form-control" name="profile_pic" aria-label="Username" id="exampleFormControlInput3" aria-describedby="basic-addon1">
                                         </div>
                                         <button class="btn btn-primary" value="info" name="update-info">Update Info</button>
                                     </form>
