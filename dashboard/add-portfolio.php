@@ -15,14 +15,18 @@ require_once('./includes/header.php');
                                 <form action="" method="post">
                                     <div class="example-content">
                                         <label for="exampleInputEmail1" class="form-label">Portfolio Title</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                        <input type="text" name="protfolio_title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                     </div>
                                     <div class="example-content">
                                         <label for="exampleInputEmail1" class="form-label">Portfolio Icon</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                        <input type="text" name="protfolio_icon" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                                     </div>
                                     <div class="example-content">
-                                        <label for="exampleInputEmail1" class="form-label">Portfolio Status</label>
+                                        <label for="exampleInputEmail1" class="form-label">Portfolio Count</label>
+                                        <input type="number" name="protfolio_count" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                    </div>
+                                    <div class="example-content">
+                                        <label for="exampleInputEmail1" name="protfolio_status" class="form-label">Portfolio Status</label>
                                         <select class="form-select" aria-label="Default select example">
                                             <option selected value="active">Active</option>
                                             <option value="inactive">Inactive</option>

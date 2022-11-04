@@ -22,6 +22,7 @@ require_once('./includes/header.php');
                                             <th scope="col">Portfolio Title</th>
                                             <th scope="col">Portfolio Icon</th>
                                             <th scope="col">Portfolio Status</th>
+                                            <th scope="col">Portfolio Count</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -30,6 +31,7 @@ require_once('./includes/header.php');
                                             <th scope="row">1</th>
                                             <td> skfsfsdf</td>
                                             <td>Otto</td>
+                                            <td>689</td>
                                             <td>
                                                 <span class="badge badge-success">
                                                     Active

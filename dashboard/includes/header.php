@@ -76,34 +76,27 @@
                     <li class="<?= $page_name == 'profile.php' ? 'active-page': '' ?>">
                         <a href="./profile.php" class="active"><i class="material-icons-two-tone">face</i>Profile</a>
                     </li>
-                    <li class=" <?= $page_name == 'add-service.php' || 'service-list.php' ? ' open active-page': '' ?>">
-                        <a href=""><i class="material-icons-two-tone">settings</i>Services<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                    <li class=" <?= $page_name == 'add-service.php' || 'service-list.php'|| 'add-portfolio.php' || 'portfolio-list.php'? '  active-page': '' ?>">
+                        <a href=""><i class="material-icons-two-tone">manage_accounts</i>Manage<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li>
                                 <a class="<?= $page_name == 'add-service.php' ? 'active': '' ?>" href="./add-service.php" >Add Service</a>
                             </li>
                             <li>
+                                <a class="<?= $page_name == 'add-portfolio.php' ? 'active': '' ?>" href="./add-portfolio.php">Add Portfolio</a>
+                            </li>
+                            <li>
                                 <a class="<?= $page_name == 'service-list.php' ? 'active': '' ?>" href="./service-list.php">Service List</a>
                             </li>
                             <li>
-                                <a href="settings.html">Settings</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class=" <?= $page_name == 'add-service.php' || 'service-list.php' ? ' open active-page': '' ?>">
-                        <a href=""><i class="material-icons-two-tone">hotel class</i>Portfolio<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a class="<?= $page_name == 'add-service.php' ? 'active': '' ?>" href="./add-service.php" >Add Porfolio</a>
-                            </li>
-                            <li>
-                                <a class="<?= $page_name == 'service-list.php' ? 'active': '' ?>" href="./service-list.php">Portfolio List</a>
+                                <a class="<?= $page_name == 'portfolio-list.php' ? 'active': '' ?>" href="./portfolio-list.php">Portfolio List</a>
                             </li>
                             <li>
                                 <a href="settings.html">Settings</a>
                             </li>
                         </ul>
                     </li>
+                    
                     <!-- <li class="sidebar-title">
                         UI Elements
                     </li>
