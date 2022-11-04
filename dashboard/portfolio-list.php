@@ -1,5 +1,9 @@
 <?php
 require_once('./includes/header.php');
+// portfolio insert query 
+$db_portfolio_query = "SELECT * FROM portfolios ;";
+$db_portfolio_result = mysqli_query($db_connect, $db_portfolio_query);
+$convert_array = mysqli_fetch_assoc($db_portfolio_result);
 ?>
 
 <div class="app-content">
@@ -21,24 +25,38 @@ require_once('./includes/header.php');
                                             <th scope="col">No</th>
                                             <th scope="col">Portfolio Title</th>
                                             <th scope="col">Portfolio Icon</th>
-                                            <th scope="col">Portfolio Status</th>
                                             <th scope="col">Portfolio Count</th>
+                                            <th scope="col">Portfolio Status</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td> skfsfsdf</td>
-                                            <td>Otto</td>
-                                            <td>689</td>
+                                    <?php
+                                        $colmun_id = 0;
+                                        foreach ($db_portfolio_result as  $portfolio):
+                                            $colmun_id++;
+                                            ?>
+                                            <tr>
+                                            <th scope="row"><?=$colmun_id?></th>
+                                            <td><?= $portfolio["portfolio_title"]?></td>
+                                            <td><?= $portfolio["portfolio_icon"]?></td>
+                                            <td><?= $portfolio["portfolio_count"]?></td>
                                             <td>
-                                                <span class="badge badge-success">
-                                                    Active
-                                                </span>
-                                                <span class="badge badge-warning">
-                                                    Inactive
-                                                </span>
+                                                <?php if($portfolio["portfolio_status"] == "active"){
+                                                    ?>
+                                                    <span class="badge badge-success">
+                                                        Active
+                                                    </span>
+                                                    <?php
+                                                    }else{
+                                                        
+                                                        ?>
+                                                    <span class="badge badge-warning">
+                                                        Inactive
+                                                    </span>
+                                                    <?php
+                                                    }
+                                                    ?>
                                             </td>
                                             <td>
                                                 <div class="">
@@ -47,9 +65,18 @@ require_once('./includes/header.php');
                                                 </div>
                                             </td>
                                         </tr>
-                                        
+                                            <?php
+                                        endforeach
+                                        ?>
                                     </tbody>
                                 </table>
+                                <?php
+                                 if(!$convert_array ==1){
+                                    ?>
+                                    <h3 class="my-3 text-center ">No Found Data</h3>
+                                    <?php
+                                }
+                                ?>
                             </div>
                         </div>
                         </div>

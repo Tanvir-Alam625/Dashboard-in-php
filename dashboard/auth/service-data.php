@@ -16,6 +16,7 @@ if(!$service_title || !$service_icon || !$service_status || !$service_descriptio
     $db_query = "INSERT INTO `services` (service_title, service_icon, service_status, service_description) VALUES ('$service_title', '$service_icon', '$service_status' , '$service_description')";
 	mysqli_query($db_connect, $db_query);
     $_SESSION["success_message"] = "Successfuly added service";
+    header('location: ../add-service.php');
 }
 
 
