@@ -56,10 +56,8 @@ if($change_password){
     }
 }
 
-
 if($flag){
     $_SESSION["validation-error"]= true;
     header("location:../profile.php");
-
 }
 ?>

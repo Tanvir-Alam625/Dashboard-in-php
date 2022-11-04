@@ -18,6 +18,8 @@ $db_users_count_result = mysqli_fetch_assoc($db_users_count);
 // show all users query 
 $db_users_query = "SELECT Name,ID,Email FROM users LIMIT 15";
 $db_users = mysqli_query($db_connect, $db_users_query);
+
+
 ?>
 
 <div class="app-content">

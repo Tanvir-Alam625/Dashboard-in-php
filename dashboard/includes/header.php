@@ -8,6 +8,11 @@
     $profile_query = "SELECT Name, Image FROM users WHERE Email='$email'";
     $profile_db = mysqli_query($db_connect, $profile_query);
     $profile_query_result = mysqli_fetch_assoc($profile_db);
+
+    $file_path = $_SERVER["PHP_SELF"];
+    $file_path_convert = explode("/", $file_path);
+    $page_name = end($file_path_convert);
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,53 +70,23 @@
                     <li class="sidebar-title">
                         Apps
                     </li>
-                    <li class="active-page">
-                        <a href="home.php" class="active"><i class="material-icons-two-tone">dashboard</i>Dashboard</a>
+                    <li class="<?= $page_name == 'home.php' ? 'active-page': '' ?>">
+                        <a href="./home.php" class="active"><i class="material-icons-two-tone">dashboard</i>Dashboard</a>
                     </li>
-                    <li class="">
-                        <a href="profile.php" class="active"><i class="material-icons-two-tone">face</i>Profile</a>
+                    <li class="<?= $page_name == 'profile.php' ? 'active-page': '' ?>">
+                        <a href="./profile.php" class="active"><i class="material-icons-two-tone">face</i>Profile</a>
                     </li>
-                    <!-- <li>
-                        <a href="mailbox.html"><i class="material-icons-two-tone">inbox</i>Mailbox<span class="badge rounded-pill badge-danger float-end">87</span></a>
-                    </li> -->
-                    <!-- 
-                    <li>
-                        <a href="file-manager.html"><i class="material-icons-two-tone">cloud_queue</i>File Manager</a>
-                    </li>
-                    <li>
-                        <a href="calendar.html"><i class="material-icons-two-tone">calendar_today</i>Calendar<span class="badge rounded-pill badge-success float-end">14</span></a>
-                    </li>
-                    <li>
-                        <a href="todo.html"><i class="material-icons-two-tone">done</i>Todo</a>
-                    </li> -->
-                    <li>
-                        <a href=""><i class="material-icons-two-tone">star</i>Pages<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                    <li class=" <?= $page_name == 'add-service.php' || 'service-list.php' ? ' open active-page': '' ?>">
+                        <a href=""><i class="material-icons-two-tone">settings</i>Services<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="pricing.html">Pricing</a>
+                                <a class="<?= $page_name == 'add-service.php' ? 'active': '' ?>" href="./add-service.php" >Add Service</a>
                             </li>
                             <li>
-                                <a href="invoice.html">Invoice</a>
+                                <a class="<?= $page_name == 'service-list.php' ? 'active': '' ?>" href="./service-list.php">Service List</a>
                             </li>
                             <li>
                                 <a href="settings.html">Settings</a>
-                            </li>
-                            <li>
-                                <a href="#">Authentication<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        <a href="sign-in.html">Sign In</a>
-                                    </li>
-                                    <li>
-                                        <a href="sign-up.html">Sign Up</a>
-                                    </li>
-                                    <li>
-                                        <a href="lock-screen.html">Lock Screen</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="error.html">Error</a>
                             </li>
                         </ul>
                     </li>
@@ -415,6 +390,9 @@
                                 <!-- <li class="nav-item hidden-on-mobile">
                                     <a class="nav-link active" href="#">Applications</a>
                                 </li> -->
+                                <li class="nav-item hidden-on-mobile">
+                                    <a class=" nav-link rounded text-white" style="background:#709EF9; color:#FF4857;" target="_blank" href="../index.php">Visit Now</a>
+                                </li>
                                 <li class="nav-item hidden-on-mobile">
                                     <a class=" nav-link rounded" style="background:#FCE3E5; color:#FF4857;" href="./auth/signout.php">SignOut</a>
                                 </li>
