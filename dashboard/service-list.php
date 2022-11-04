@@ -32,8 +32,20 @@ require_once('./includes/header.php');
                                             <td> skfsfsdf</td>
                                             <td>Otto</td>
                                             <td>@mdo</td>
-                                            <td>@mdo</td>
-                                            <td>@mdo</td>
+                                            <td>
+                                                <span class="badge badge-success">
+                                                    Active
+                                                </span>
+                                                <span class="badge badge-warning">
+                                                    Inactive
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div class="">
+                                                    <button class="btn btn-sm btn-primary">Edit</button>
+                                                    <button  class="btn btn-sm btn-danger">Delete</button>
+                                                </div>
+                                            </td>
                                         </tr>
                                         
                                     </tbody>
