@@ -90,6 +90,20 @@
                             </li>
                         </ul>
                     </li>
+                    <li class=" <?= $page_name == 'add-service.php' || 'service-list.php' ? ' open active-page': '' ?>">
+                        <a href=""><i class="material-icons-two-tone">hotel class</i>Portfolio<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a class="<?= $page_name == 'add-service.php' ? 'active': '' ?>" href="./add-service.php" >Add Porfolio</a>
+                            </li>
+                            <li>
+                                <a class="<?= $page_name == 'service-list.php' ? 'active': '' ?>" href="./service-list.php">Portfolio List</a>
+                            </li>
+                            <li>
+                                <a href="settings.html">Settings</a>
+                            </li>
+                        </ul>
+                    </li>
                     <!-- <li class="sidebar-title">
                         UI Elements
                     </li>
