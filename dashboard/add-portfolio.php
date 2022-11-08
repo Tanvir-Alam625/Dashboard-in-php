@@ -1,5 +1,6 @@
 <?php
 require_once('./includes/header.php');
+require_once("./Icon/Icon.php");
 session_start();
 ?>
 <div class="app-content">
@@ -54,8 +55,18 @@ session_start();
                                         <input type="text" name="portfolio_title" class="form-control"  aria-describedby="emailHelp" >
                                     </div>
                                     <div class="example-content">
-                                        <label for="exampleInputEmail1" class="form-label">Portfolio Icon</label>
-                                        <input type="text" name="portfolio_icon" class="form-control"  aria-describedby="emailHelp" >
+                                        <label for="exampleInputEmail1" class="form-label">Portfolio Icon</label><span id="showIconPortfolio"></span>
+                                        <input type="text" id="iconValuePortfolio" readonly  name="portfolio_icon" class="form-control"  aria-describedby="emailHelp" >
+                                    </div>
+                                    <div class="p-3" style=" overflow-y: scroll; height: 150px;">
+                                    <?php
+                                    foreach ($fonts as  $font):
+                                        ?>
+                                        <span class="rounded bg-primary m-2 fontsIconPortfolio" id="<?= $font ?>" style="cursor:pointer;">
+                                        <i class=" fs-5 p-2 <?= $font ?>" ></i></span>
+                                        <?php
+                                    endforeach
+                                    ?>
                                     </div>
                                     <div class="example-content">
                                         <label for="exampleInputEmail1" class="form-label">Portfolio Count</label>
@@ -82,3 +93,14 @@ session_start();
 <?php
 require_once('./includes/header.php');
 ?>
+<script>
+    const fonts = document.querySelectorAll(".fontsIconPortfolio");
+    const iconValue= document.getElementById("iconValuePortfolio");
+    const showIcon = document.getElementById("showIconPortfolio");
+    fonts.forEach(font => {
+        font.addEventListener('click',()=>{
+            iconValue.value = font.attributes.id.nodeValue;
+            showIcon.innerHTML = `<i class=" fs-5 p-2 ${font.attributes.id.nodeValue}" ></i>`;
+        })     
+    });
+</script>

@@ -19,7 +19,6 @@ if(!$portfolio_title || !$portfolio_icon || !$portfolio_status || !$portfolio_co
     header('location: ../add-portfolio.php');
 }
 
-
 if($flag){
     header('location: ../add-portfolio.php');
 }

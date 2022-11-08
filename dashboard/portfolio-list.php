@@ -86,11 +86,6 @@ $convert_array = mysqli_fetch_assoc($db_portfolio_result);
         </div>
     </div>
 </div>
-
-
-
-
-
 <?php
 require_once('./includes/footer.php');
 ?>

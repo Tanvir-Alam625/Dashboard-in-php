@@ -1,12 +1,10 @@
 <?php
 require_once('./includes/header.php');
+// service insert query 
 $db_services_query = "SELECT * FROM services ;";
 $db_services_result = mysqli_query($db_connect, $db_services_query);
 $convert_array = mysqli_fetch_assoc($db_services_result);
-
-
 ?>
-
 <div class="app-content">
     <div class="content-wrapper ">
         <div class="container">
@@ -17,7 +15,6 @@ $convert_array = mysqli_fetch_assoc($db_services_result);
                             <h5 class="card-title">List of Service</h5>
                         </div>
                         <div class="card-body">
-                            
                         <div class="example-container">
                             <div class="example-content">
                                 <table class="table table-striped table-hover">
@@ -32,8 +29,7 @@ $convert_array = mysqli_fetch_assoc($db_services_result);
                                         </tr>
                                     </thead>
                                     <tbody>
-
-                                    
+                                        <!-- table colmun  -->
                                         <?php 
                                         $colmun_id = 0;
                                         foreach ($db_services_result as  $service):
@@ -60,7 +56,6 @@ $convert_array = mysqli_fetch_assoc($db_services_result);
                                                     <?php
                                                     }
                                                     ?>
-                                               
                                             </td>
                                             <td>
                                                 <div class="">
@@ -69,9 +64,7 @@ $convert_array = mysqli_fetch_assoc($db_services_result);
                                                 </div>
                                             </td>
                                         </tr>
-
                                             <?php
-                                            
                                         endforeach
                                         ?>
                                     </tbody>
@@ -92,11 +85,6 @@ $convert_array = mysqli_fetch_assoc($db_services_result);
         </div>
     </div>
 </div>
-
-
-
-
-
 <?php
 require_once('./includes/footer.php');
 ?>

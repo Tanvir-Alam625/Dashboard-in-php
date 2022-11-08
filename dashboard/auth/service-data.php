@@ -7,7 +7,6 @@ $service_status= htmlspecialchars(trim($_POST["service_status"]));
 $service_description = htmlspecialchars(trim($_POST["service_description"]));
 
 
-// echo $service_description."------", $service_icon ."------", $service_status ."------", $service_title ."------";
 $flag = false;
 if(!$service_title || !$service_icon || !$service_status || !$service_description){
     $flag =true;
