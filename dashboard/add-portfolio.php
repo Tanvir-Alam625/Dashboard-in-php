@@ -79,7 +79,7 @@ session_start();
                                             <option value="inactive">Inactive</option>
                                         </select>
                                     </div>
-                                    <button type="submit" class="btn btn-primary m-3">Add Portfolio</button>
+                                    <button name="add_portfolio" type="submit" class="btn btn-primary m-3">Add Portfolio</button>
                                 </form>
                             </div>
                         </div>

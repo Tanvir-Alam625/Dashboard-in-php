@@ -60,8 +60,8 @@ $convert_array = mysqli_fetch_assoc($db_portfolio_result);
                                             </td>
                                             <td>
                                                 <div class="">
-                                                    <button class="btn btn-sm btn-primary">Edit</button>
-                                                    <button  class="btn btn-sm btn-danger">Delete</button>
+                                                    <a href="./update-portfolio.php?id=<?=$portfolio['ID']?>" class="btn btn-sm btn-primary">Edit</a>
+                                                    <a  href="./auth/delete/portfolio-delete.php?id=<?= $portfolio["ID"]?>" class="btn btn-sm btn-danger">Delete</a>
                                                 </div>
                                             </td>
                                         </tr>

@@ -2,11 +2,17 @@
 require_once('./includes/header.php');
 require_once("./Icon/Icon.php");
 session_start();
+$id = $_GET["id"];
+// service select query  with id 
+$db_portfolio_query = "SELECT * FROM portfolios  WHERE ID=$id;";
+$db_portfolio_result = mysqli_query($db_connect, $db_portfolio_query);
+$portfolio_query_convert_array = mysqli_fetch_assoc($db_portfolio_result); 
+
 ?>
 
 
 <div class="app-content">
-    <!-- succes message  -->
+    <!-- success message  -->
     <?php
         if(isset($_SESSION['success_message'])){?>
         <div class="d-flex justify-content-center">
@@ -47,20 +53,21 @@ session_start();
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Add Service</h5>
+                            <h5 class="card-title">Update Portfolio</h5>
                         </div>
                         <div class="card-body">
                             <div class="example-container">
-                                <form action="./auth/service-data.php" method="post">
+                                <form action="./auth/portfolio-data.php" method="post">
+                                    <input type="number" value="<?=$id ?>" name="portfolio_id" hidden >
                                     <div class="example-content">
-                                        <label for="exampleInputEmail1" class="form-label">Service Title</label>
-                                        <input type="text" name="service_title" class="form-control"  aria-describedby="emailHelp">
+                                        <label for="exampleInputEmail1" class="form-label">Portfolio Title</label>
+                                        <input type="text" required value="<?=$portfolio_query_convert_array["portfolio_title"]?>" name="portfolio_title" class="form-control"  aria-describedby="emailHelp">
                                     </div>
                                     <div class="example-content">
-                                        <label for="exampleInputEmail1" class="form-label">Service Icon</label><span id="showIconService"></span>
-                                        <input  id="iconValueService" value="" type="text" name="service_icon" class="form-control" readonly  aria-describedby="emailHelp">
+                                        <label for="exampleInputEmail1" class="form-label">Portfolio Icon</label><span class="ml-3" id="showIconService"><i class="<?=$portfolio_query_convert_array["portfolio_icon"]?>"></i></span>
+                                        <input required  id="iconValueService" value="<?=$portfolio_query_convert_array["portfolio_icon"]?>" type="text" name="portfolio_icon" class="form-control" readonly  aria-describedby="emailHelp">
                                     </div>
-                                    <div class="p-3" style=" overflow-y: scroll; height: 150px;">
+                                    <div class="p-3" style="overflow-y: scroll; height: 150px;">
                                     <?php
                                     foreach ($fonts as  $font):
                                         ?>
@@ -71,17 +78,21 @@ session_start();
                                     ?>
                                     </div>
                                     <div class="example-content">
-                                        <label for="exampleInputEmail1" class="form-label">Service Status</label>
-                                        <select class="form-select" name="service_status" aria-label="Default select example">
-                                            <option selected value="active">Active</option>
-                                            <option value="inactive">Inactive</option>
-                                        </select>
+                                        <label for="exampleInputEmail1" class="form-label">Portfolio Count</label>
+                                        <input required type="number" value="<?=$portfolio_query_convert_array["portfolio_count"]?>" name="portfolio_count" class="form-control"   aria-describedby="emailHelp">
                                     </div>
                                     <div class="example-content">
-                                        <label for="exampleInputEmail1" class="form-label">Service Description</label>
-                                        <textarea class="form-control" name="service_description"  id="floatingTextarea2" style="height: 100px"></textarea>
+                                        <label for="exampleInputEmail1" class="form-label">Portfolio Status</label>
+                                        <select class="form-select" name="portfolio_status" aria-label="Default select example">
+                                            <option 
+                                            <?= $portfolio_query_convert_array["portfolio_status"] === "active" ? "selected" : "" ?>
+                                            value="active">Active</option>
+                                            <option
+                                            <?= $portfolio_query_convert_array["portfolio_status"] === "inactive" ? "selected" : "" ?>
+                                            value="inactive">Inactive</option>
+                                        </select>
                                     </div>
-                                    <button type="submit" name="add_service" class="btn btn-primary m-3">Add Service</button>
+                                    <button type="submit" name="update_portfolio" class="btn btn-primary m-3">Update Portfolio</button>
                                 </form>
                             </div>
                         </div>

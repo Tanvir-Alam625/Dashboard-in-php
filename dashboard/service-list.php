@@ -38,7 +38,7 @@ $convert_array = mysqli_fetch_assoc($db_services_result);
                                             <tr>
                                             <th scope="row"><?=$colmun_id?></th>
                                             <td><?= $service["service_title"]?></td>
-                                            <td><?= $service["service_icon"]?></td>
+                                            <td><i class="<?= $service["service_icon"]?>"></i></td>
                                             <td><?= $service["service_description"]?></td>
                                             <td>
                                                 <?php if($service["service_status"] == "active"){
@@ -58,9 +58,9 @@ $convert_array = mysqli_fetch_assoc($db_services_result);
                                                     ?>
                                             </td>
                                             <td>
-                                                <div class="">
-                                                    <button class="btn btn-sm btn-primary">Edit</button>
-                                                    <button  class="btn btn-sm btn-danger">Delete</button>
+                                                <div >
+                                                    <a href="./update-service.php?id=<?=$service["ID"] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                                    <a href="./auth/delete/service-delete.php?id=<?= $service["ID"]?>" class="btn btn-sm btn-danger">Delete</a>
                                                 </div>
                                             </td>
                                         </tr>
