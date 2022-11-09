@@ -4,9 +4,9 @@ require_once('./includes/header.php');
 $email =$_SESSION['auth_email'];
 
 // user name query
-$db_name_query = "SELECT Name, ID FROM users WHERE Email='$email';";
-$db_name = mysqli_query($db_connect, $db_name_query);
-$db_name_result = mysqli_fetch_assoc($db_name);
+$db_user_query = "SELECT Name, ID, Phone, Address, Bio, Facebook, Linkedin, Instagram, Twitter FROM users WHERE Email='$email';";
+$db_user = mysqli_query($db_connect, $db_user_query);
+$db_user_result = mysqli_fetch_assoc($db_user);
 
 
 ?>
@@ -76,7 +76,8 @@ $db_name_result = mysqli_fetch_assoc($db_name);
                             <div class="example-container">
                                 <div class="example-content">
                                     <form action="./auth/profile-info-data.php" method="post" enctype="multipart/form-data">
-                                        <div class="mb-3">
+                                       <input type="email" name="email" hidden value="<?= $email?>" id="">
+                                    <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Name</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1" value="<?= $_SESSION["name_value"]?>"  aria-label="Username" name="name" aria-describedby="basic-addon1">
                                         <?php
@@ -91,7 +92,7 @@ $db_name_result = mysqli_fetch_assoc($db_name);
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleFormControlInput2" class="form-label">Phone Number</label>
-                                            <input type="tel" class="form-control" value="<?= isset($_SESSION["phone_value"]) ? $_SESSION["phone_value"]: '' ?>" name="phone" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                            <input type="tel" class="form-control" value="<?= isset($db_user_result["Phone"]) ? $db_user_result["Phone"]: '' ?>" name="phone" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
                                             <?php
                                             if(isset($_SESSION['phone_error'])){
                                                 ?>
@@ -102,10 +103,82 @@ $db_name_result = mysqli_fetch_assoc($db_name);
                                             ?>
                                         </div>
                                         <div class="mb-3">
+                                            <label for="exampleFormControlInput2" class="form-label">Address Line</label>
+                                            <input type="text" class="form-control" value="<?= isset($db_user_result["Address"]) ? $db_user_result["Address"]: '' ?>" name="address" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                            <?php
+                                            if(isset($_SESSION['address_error'])){
+                                                ?>
+                                                <p class="text-danger"><?= $_SESSION['address_error']?></p>
+                                                <?php
+                                            }
+                                            unset($_SESSION['address_error']);
+                                            ?>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput2" class="form-label">Facebook Link</label>
+                                            <input type="text" class="form-control" value="<?= isset($db_user_result["Facebook"]) ? $db_user_result["Facebook"]: '' ?>" name="facebook" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                            <?php
+                                            if(isset($_SESSION['facebook_error'])){
+                                                ?>
+                                                <p class="text-danger"><?= $_SESSION['facebook_error']?></p>
+                                                <?php
+                                            }
+                                            unset($_SESSION['facebook_error']);
+                                            ?>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput2" class="form-label">Twitter Link</label>
+                                            <input type="text" class="form-control" value="<?= isset($db_user_result["Twitter"]) ? $db_user_result["Twitter"]: '' ?>" name="twitter" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                            <?php
+                                            if(isset($_SESSION['twitter_error'])){
+                                                ?>
+                                                <p class="text-danger"><?= $_SESSION['twitter_error']?></p>
+                                                <?php
+                                            }
+                                            unset($_SESSION['twitter_error']);
+                                            ?>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput2" class="form-label">Instagram Link</label>
+                                            <input type="text" class="form-control" value="<?= isset($db_user_result["Instagram"]) ? $db_user_result["Instagram"]: '' ?>" name="instagram" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                            <?php
+                                            if(isset($_SESSION['instagram_error'])){
+                                                ?>
+                                                <p class="text-danger"><?= $_SESSION['instagram_error']?></p>
+                                                <?php
+                                            }
+                                            unset($_SESSION['instagram_error']);
+                                            ?>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput2" class="form-label">Linkedin Link</label>
+                                            <input type="text" class="form-control" value="<?= isset($db_user_result["Linkedin"]) ? $db_user_result["Linkedin"]: '' ?>" name="linkedin" aria-label="Username" id="exampleFormControlInput2" aria-describedby="basic-addon1">
+                                            <?php
+                                            if(isset($_SESSION['linkedin_error'])){
+                                                ?>
+                                                <p class="text-danger"><?= $_SESSION['linkedin_error']?></p>
+                                                <?php
+                                            }
+                                            unset($_SESSION['linkedin_error']);
+                                            ?>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleFormControlInput2" class="form-label">Your Bio</label>
+                                            <textarea class="form-control" name="bio"  id="floatingTextarea2" style="height: 100px"><?= $db_user_result["Bio"]?></textarea>
+                                            <?php
+                                            if(isset($_SESSION['bio_error'])){
+                                                ?>
+                                                <p class="text-danger"><?= $_SESSION['bio_error']?></p>
+                                                <?php
+                                            }
+                                            unset($_SESSION['bio_error']);
+                                            ?>
+                                        </div>
+                                        <div class="mb-3">
                                             <label for="formFile" class="form-label">Upload Image</label>
                                             <input type="file" class="form-control" name="profile_pic" aria-label="Username" id="formFile" aria-describedby="basic-addon1">
                                         </div>
-                                        <button class="btn btn-primary" value="info" name="update-info">Update Info</button>
+                                        <button class="btn btn-primary" name="update-info">Update Info</button>
                                     </form>
                                 </div>             
                             </div>

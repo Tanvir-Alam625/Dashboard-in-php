@@ -6,7 +6,7 @@
 <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Kufa - Personal Portfolio HTML5 Template</title>
+        <title> Personal Portfolio</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,13 +29,22 @@
     <body class="theme-bg">
     <?php
     require_once("./dashboard/db_connect/db_connect.php");
+    session_start();
+    $user_id = $_SESSION["auth_id"];
 
     // service insert query 
     $service_query = "SELECT * FROM services WHERE service_status='active' LIMIT 6";
     $services = mysqli_query($db_connect, $service_query);
+    
     // portfolio insert query 
     $portfolio_query = "SELECT * FROM portfolios WHERE portfolio_status='active' LIMIT 4";
     $portfolios = mysqli_query($db_connect, $portfolio_query);
+    // user info quey 
+    $db_user_query = "SELECT Email, Name,Image, ID, Phone, Address, Bio, Facebook, Linkedin, Instagram, Twitter FROM users WHERE ID='$user_id';";
+    $db_user = mysqli_query($db_connect, $db_user_query);
+    $db_user_result = mysqli_fetch_assoc($db_user);
+
+
     ?>
 
         <!-- preloader -->
@@ -99,24 +108,23 @@
                 <div class="side-info mb-30">
                     <div class="contact-list mb-30">
                         <h4>Office Address</h4>
-                        <p>123/A, Miranda City Likaoli
-                            Prikano, Dope</p>
+                        <p><?= $db_user_result["Address"]?></p>
                     </div>
                     <div class="contact-list mb-30">
                         <h4>Phone Number</h4>
-                        <p>+0989 7876 9865 9</p>
+                        <p>+<?=$db_user_result["Phone"]?></p>
                     </div>
                     <div class="contact-list mb-30">
                         <h4>Email Address</h4>
-                        <p>info@example.com</p>
+                        <p><?=$db_user_result["Email"]?></p>
                     </div>
                 </div>
                 <div class="banner-social wow fadeInUp" data-wow-delay="0.8s">
                     <ul>
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                        <li><a href="<?= $db_user_result["Facebook"]?>" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="<?= $db_user_result["Twitter"]?>" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="<?= $db_user_result["Instagram"]?>" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="<?= $db_user_result["Linkedin"]?>" target="_blank"><i class="fab fa-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -135,14 +143,14 @@
                         <div class="col-xl-7 col-lg-6">
                             <div class="banner-content">
                                 <h6 class="wow fadeInUp" data-wow-delay="0.2s">HELLO!</h6>
-                                <h2 class="wow fadeInUp" data-wow-delay="0.4s">I am Will Smith</h2>
-                                <p class="wow fadeInUp" data-wow-delay="0.6s">I'm Will Smith, professional web developer with long time experience in this field​.</p>
+                                <h2 class="wow fadeInUp" data-wow-delay="0.4s">I am <?= $db_user_result["Name"]?></h2>
+                                <p class="wow fadeInUp" data-wow-delay="0.6s"><?= $db_user_result["Bio"]?></p>
                                 <div class="banner-social wow fadeInUp" data-wow-delay="0.8s">
                                     <ul>
-                                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                                    <li><a href="<?= $db_user_result["Facebook"]?>" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                    <li><a href="<?= $db_user_result["Twitter"]?>" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="<?= $db_user_result["Instagram"]?>" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="<?= $db_user_result["Linkedin"]?>" target="_blank"><i class="fab fa-linkedin"></i></a></li>
                                     </ul>
                                 </div>
                                 <a href="#" class="btn wow fadeInUp" data-wow-delay="1s">SEE PORTFOLIOS</a>
@@ -150,12 +158,14 @@
                         </div>
                         <div class="col-xl-5 col-lg-6 d-none d-lg-block">
                             <div class="banner-img text-right">
-                                <img src="img/banner/banner_img.png" alt="">
+                                <img src="./dashboard/img/profile-img/<?= $db_user_result['Image']?>" alt="">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="banner-shape"><img src="img/shape/dot_circle.png" class="rotateme" alt="img"></div>
+                <div class="banner-shape">
+                    <img src="img/shape/dot_circle.png" class="rotateme" alt="img">
+                </div>
             </section>
             <!-- banner-area-end -->
 
