@@ -1,11 +1,10 @@
 <?php
 require_once('./includes/header.php');
-// portfolio insert query 
-$db_portfolio_query = "SELECT * FROM portfolios ;";
-$db_portfolio_result = mysqli_query($db_connect, $db_portfolio_query);
-$convert_array = mysqli_fetch_assoc($db_portfolio_result);
+// service insert query 
+$db_services_query = "SELECT * FROM services ;";
+$db_services_result = mysqli_query($db_connect, $db_services_query);
+$convert_array = mysqli_fetch_assoc($db_services_result);
 ?>
-
 <div class="app-content">
     <div class="content-wrapper ">
         <div class="container">
@@ -13,44 +12,44 @@ $convert_array = mysqli_fetch_assoc($db_portfolio_result);
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">List of Portfolio</h5>
+                            <h5 class="card-title">List of Service</h5>
                         </div>
                         <div class="card-body">
-                            
                         <div class="example-container">
                             <div class="example-content">
                                 <table class="table table-striped table-hover">
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
-                                            <th scope="col">Portfolio Title</th>
-                                            <th scope="col">Portfolio Icon</th>
-                                            <th scope="col">Portfolio Count</th>
-                                            <th scope="col">Portfolio Status</th>
+                                            <th scope="col">Service Title</th>
+                                            <th scope="col">Service Icon</th>
+                                            <th scope="col">Service Description</th>
+                                            <th scope="col">Service Status</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php
+                                        <!-- table colmun  -->
+                                        <?php 
                                         $colmun_id = 0;
-                                        foreach ($db_portfolio_result as  $portfolio):
+                                        foreach ($db_services_result as  $service):
                                             $colmun_id++;
                                             ?>
                                             <tr>
                                             <th scope="row"><?=$colmun_id?></th>
-                                            <td><?= $portfolio["portfolio_title"]?></td>
-                                            <td><i class="<?= $portfolio["portfolio_icon"]?>"></i></td>
-                                            <td><?= $portfolio["portfolio_count"]?></td>
+                                            <td><?= $service["service_title"]?></td>
+                                            <td><i class="<?= $service["service_icon"]?>"></i></td>
+                                            <td><?= $service["service_description"]?></td>
                                             <td>
-                                                <?php if($portfolio["portfolio_status"] == "active"){
+                                                <?php if($service["service_status"] == "active"){
                                                     ?>
                                                     <span class="badge badge-success">
                                                         Active
                                                     </span>
                                                     <?php
                                                     }else{
-                                                        
-                                                        ?>
+
+                                                    ?>
                                                     <span class="badge badge-warning">
                                                         Inactive
                                                     </span>
@@ -59,9 +58,9 @@ $convert_array = mysqli_fetch_assoc($db_portfolio_result);
                                                     ?>
                                             </td>
                                             <td>
-                                                <div class="">
-                                                    <a href="./update-portfolio.php?id=<?=$portfolio['ID']?>" class="btn btn-sm btn-primary">Edit</a>
-                                                    <a  href="./auth/delete/portfolio-delete.php?id=<?= $portfolio["ID"]?>" class="btn btn-sm btn-danger">Delete</a>
+                                                <div >
+                                                    <a href="./update-service.php?id=<?=$service["ID"] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                                    <a href="./auth/delete/service-delete.php?id=<?= $service["ID"]?>" class="btn btn-sm btn-danger">Delete</a>
                                                 </div>
                                             </td>
                                         </tr>

@@ -78,30 +78,56 @@
                         <a href="./profile.php" class="active"><i class="material-icons-two-tone">face</i>Profile</a>
                     </li>
                     <li 
-                    <?php
-                    if($page_name == 'add-service.php' || $page_name == 'service-list.php'|| $page_name == 'add-portfolio.php' || $page_name == 'portfolio-list.php'):
-                        ?>
-                        class="active-page"
                         <?php
-                        endif
-                    ?>
-                    >
-                        <a href="add-service.php"><i class="material-icons-two-tone">manage_accounts</i>Manage<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        if($page_name == 'add-portfolio.php' || $page_name == 'portfolio-list.php'):
+                            ?>
+                            class="active-page"
+                            <?php
+                            endif
+                        ?> >
+                        <a href="add-service.php"><i class="material-icons-two-tone">manage_accounts</i>Portfolio<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a class="<?= $page_name == 'add-portfolio.php' ? 'active': '' ?>" href="./add-portfolio.php">Add Portfolio</a>
+                            </li>
+                            <li>
+                                <a class="<?= $page_name == 'portfolio-list.php' ? 'active': '' ?>" href="./portfolio-list.php">Portfolio List</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li 
+                        <?php
+                        if($page_name == 'add-work.php' || $page_name == 'work-list.php'):
+                            ?>
+                            class="active-page"
+                            <?php
+                            endif
+                        ?> >
+                        <a href="add-work.php"><i class="material-icons-two-tone">work</i>Best Work<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a class="<?= $page_name == 'add-work.php' ? 'active': '' ?>" href="./add-work.php" >Add Work</a>
+                            </li>
+                            <li>
+                                <a class="<?= $page_name == 'work-list.php' ? 'active': '' ?>" href="./work-list.php">Work List</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li 
+                        <?php
+                        if($page_name == 'add-service.php' || $page_name == 'service-list.php'):
+                            ?>
+                            class="active-page"
+                            <?php
+                            endif
+                        ?> >
+                        <a href="add-work.php"><i class="material-icons-two-tone">manage_accounts</i>Service<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li>
                                 <a class="<?= $page_name == 'add-service.php' ? 'active': '' ?>" href="./add-service.php" >Add Service</a>
                             </li>
                             <li>
-                                <a class="<?= $page_name == 'add-portfolio.php' ? 'active': '' ?>" href="./add-portfolio.php">Add Portfolio</a>
-                            </li>
-                            <li>
                                 <a class="<?= $page_name == 'service-list.php' ? 'active': '' ?>" href="./service-list.php">Service List</a>
-                            </li>
-                            <li>
-                                <a class="<?= $page_name == 'portfolio-list.php' ? 'active': '' ?>" href="./portfolio-list.php">Portfolio List</a>
-                            </li>
-                            <li>
-                                <a href="settings.html">Settings</a>
                             </li>
                         </ul>
                     </li>
