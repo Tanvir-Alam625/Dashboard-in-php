@@ -41,9 +41,9 @@
     <!-- Theme Styles -->
     <link href="./assets/css/main.min.css" rel="stylesheet">
     <link href="./assets/css/custom.css" rel="stylesheet">
-    font awesome icons link 
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" /><link rel="icon" type="image/png" sizes="32x32" href="./assets/images/neptune.png" />
+    <!-- font awesome icons link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/neptune.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/neptune.png" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

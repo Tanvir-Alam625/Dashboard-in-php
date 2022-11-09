@@ -1,19 +1,7 @@
 
-<?php
-require_once("./dashboard/db_connect/db_connect.php");
-
-// service insert query 
-$service_query = "SELECT * FROM services WHERE service_status='active' LIMIT 6";
-$services = mysqli_query($db_connect, $service_query);
-// portfolio insert query 
-$portfolio_query = "SELECT * FROM portfolios WHERE portfolio_status='active' LIMIT 4";
-$portfolios = mysqli_query($db_connect, $portfolio_query);
-print_r($portfolios);
-?>
 
 <!doctype html>
 <html class="no-js" lang="en">
-
 <!-- Mirrored from themebeyond.com/html/kufa/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Feb 2020 06:27:43 GMT -->
 <head>
         <meta charset="utf-8">
@@ -24,12 +12,12 @@ print_r($portfolios);
 
         <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
         <!-- Place favicon.ico in the root directory -->
-
+        
 		<!-- CSS here -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/animate.min.css">
         <link rel="stylesheet" href="css/magnific-popup.css">
-        <!-- <link rel="stylesheet" href="css/fontawesome-all.min.css"> -->
+        <link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="css/flaticon.css">
         <link rel="stylesheet" href="css/slick.css">
@@ -39,6 +27,16 @@ print_r($portfolios);
         <link rel="stylesheet" href="css/responsive.css">
     </head>
     <body class="theme-bg">
+    <?php
+    require_once("./dashboard/db_connect/db_connect.php");
+
+    // service insert query 
+    $service_query = "SELECT * FROM services WHERE service_status='active' LIMIT 6";
+    $services = mysqli_query($db_connect, $service_query);
+    // portfolio insert query 
+    $portfolio_query = "SELECT * FROM portfolios WHERE portfolio_status='active' LIMIT 4";
+    $portfolios = mysqli_query($db_connect, $portfolio_query);
+    ?>
 
         <!-- preloader -->
         <div id="preloader">
@@ -113,11 +111,13 @@ print_r($portfolios);
                         <p>info@example.com</p>
                     </div>
                 </div>
-                <div class="social-icon-right mt-20">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                <div class="banner-social wow fadeInUp" data-wow-delay="0.8s">
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                    </ul>
                 </div>
             </div>
             <div class="offcanvas-overly"></div>
@@ -500,11 +500,11 @@ print_r($portfolios);
                         </div>
                         <div class="col-lg-6">
                             <div class="contact-form">
-                                <form action="#">
-                                    <input type="text" placeholder="your name *">
-                                    <input type="email" placeholder="your email *">
-                                    <textarea name="message" id="message" placeholder="your message *"></textarea>
-                                    <button class="btn">SEND</button>
+                                <form action="./dashboard/auth/email-data.php" method="post">
+                                    <input type="text" name="name" placeholder="your name *" required>
+                                    <input type="email" name="email" placeholder="your email *" required>
+                                    <textarea name="message" name="message" id="message" required placeholder="your message *"></textarea>
+                                    <button class="btn" type="submit">SEND</button>
                                 </form>
                             </div>
                         </div>
