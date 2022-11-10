@@ -32,14 +32,17 @@
     session_start();
     $user_id = $_SESSION["auth_id"];
 
-    // service insert query 
+    // service select query 
     $service_query = "SELECT * FROM services WHERE service_status='active' LIMIT 6";
     $services = mysqli_query($db_connect, $service_query);
+    // work select query 
+    $work_query = "SELECT * FROM works WHERE work_status='active' LIMIT 6";
+    $works = mysqli_query($db_connect, $work_query);
     
-    // portfolio insert query 
+    // portfolio select query 
     $portfolio_query = "SELECT * FROM portfolios WHERE portfolio_status='active' LIMIT 4";
     $portfolios = mysqli_query($db_connect, $portfolio_query);
-    // user info quey 
+    // user info query 
     $db_user_query = "SELECT Email, Name,Image, ID, Phone, Address, Bio, Facebook, Linkedin, Instagram, Twitter FROM users WHERE ID='$user_id';";
     $db_user = mysqli_query($db_connect, $db_user_query);
     $db_user_result = mysqli_fetch_assoc($db_user);
@@ -297,78 +300,25 @@
                         </div>
                     </div>
                     <div class="row">
+                        <?php
+                        foreach ($works as  $work):?>
                         <div class="col-lg-4 col-md-6 pitem">
                             <div class="speaker-box">
 								<div class="speaker-thumb">
-									<img src="img/images/1.jpg" alt="img">
+									<img src="./dashboard/img/work-imges/<?= $work["work_image"]?>" alt="img">
 								</div>
 								<div class="speaker-overlay">
-									<span>Design</span>
-									<h4><a href="portfolio-single.html">Hamble Triangle</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
+									<span><?= $work["work_rol"]?></span>
+									<h4><a href="portfolio-single.html"><?= substr($work["work_title"],0,10)?></a></h4>
+									<a href="./portfolio-details.php?id=<?=$work["ID"]?>" class="arrow-btn">More information <span></span></a>
 								</div>
 							</div>
                         </div>
-                        <div class="col-lg-4 col-md-6 pitem">
-                            <div class="speaker-box">
-								<div class="speaker-thumb">
-									<img src="img/images/2.jpg" alt="img">
-								</div>
-								<div class="speaker-overlay">
-									<span>Video</span>
-									<h4><a href="portfolio-single.html">Dark Beauty</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-								</div>
-							</div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 pitem">
-                            <div class="speaker-box">
-								<div class="speaker-thumb">
-									<img src="img/images/3.jpg" alt="img">
-								</div>
-								<div class="speaker-overlay">
-									<span>Audio</span>
-									<h4><a href="portfolio-single.html">Gilroy Limbo.</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-								</div>
-							</div>
-                        </div>
-						<div class="col-lg-4 col-md-6 pitem">
-                            <div class="speaker-box">
-								<div class="speaker-thumb">
-									<img src="img/images/4.jpg" alt="img">
-								</div>
-								<div class="speaker-overlay">
-									<span>Design</span>
-									<h4><a href="portfolio-single.html">Ipsum which</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-								</div>
-							</div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 pitem">
-                            <div class="speaker-box">
-								<div class="speaker-thumb">
-									<img src="img/images/5.jpg" alt="img">
-								</div>
-								<div class="speaker-overlay">
-									<span>Creative</span>
-									<h4><a href="portfolio-single.html">Eiusmod tempor</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-								</div>
-							</div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 pitem">
-                            <div class="speaker-box">
-								<div class="speaker-thumb">
-									<img src="img/images/6.jpg" alt="img">
-								</div>
-								<div class="speaker-overlay">
-									<span>UX/UI</span>
-									<h4><a href="portfolio-single.html">again there</a></h4>
-									<a href="portfolio-single.html" class="arrow-btn">More information <span></span></a>
-								</div>
-							</div>
-                        </div>
+                        <?php
+                            
+                        endforeach
+                        ?>
+
                     </div>
                 </div>
             </section>

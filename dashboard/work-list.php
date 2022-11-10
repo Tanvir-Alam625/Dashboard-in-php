@@ -39,7 +39,7 @@ $convert_array = mysqli_fetch_assoc($db_works_result);
                                             <th scope="row"><?=$colmun_id?></th>
                                             <td><?= $work["work_title"]?></td>
                                             <td><img src="./img/work-imges/<?= $work["work_image"]?>" width="100px" alt=""></td>
-                                            <td><?= $work["work_description"]?></td>
+                                            <td title="<?=$work["work_description"]?>"><?= substr($work["work_description"],0,100)?></td>
                                             <td>
                                                 <?php if($work["work_status"] == "active"){
                                                     ?>
