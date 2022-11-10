@@ -12,7 +12,7 @@ $convert_array = mysqli_fetch_assoc($db_works_result);
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">List of Service</h5>
+                            <h5 class="card-title">List of Work</h5>
                         </div>
                         <div class="card-body">
                         <div class="example-container">
@@ -38,7 +38,7 @@ $convert_array = mysqli_fetch_assoc($db_works_result);
                                             <tr>
                                             <th scope="row"><?=$colmun_id?></th>
                                             <td><?= $work["work_title"]?></td>
-                                            <td><img src="./img/work-imges/<?= $work["work_image"]?>" width="50px" alt=""></td>
+                                            <td><img src="./img/work-imges/<?= $work["work_image"]?>" width="100px" alt=""></td>
                                             <td><?= $work["work_description"]?></td>
                                             <td>
                                                 <?php if($work["work_status"] == "active"){
@@ -58,7 +58,7 @@ $convert_array = mysqli_fetch_assoc($db_works_result);
                                             </td>
                                             <td>
                                                 <div >
-                                                    <a href="./update-service.php?id=<?=$work["ID"] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                                    <a href="./update-work.php?id=<?=$work["ID"] ?>" class="btn btn-sm btn-primary">Edit</a>
                                                     <a href="./auth/delete/work-delete.php?id=<?= $work["ID"]?>" class="btn btn-sm btn-danger">Delete</a>
                                                 </div>
                                             </td>
