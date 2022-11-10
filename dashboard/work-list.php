@@ -1,9 +1,9 @@
 <?php
 require_once('./includes/header.php');
-// service insert query 
-$db_services_query = "SELECT * FROM services ;";
-$db_services_result = mysqli_query($db_connect, $db_services_query);
-$convert_array = mysqli_fetch_assoc($db_services_result);
+// work insert query 
+$db_works_query = "SELECT * FROM works ;";
+$db_works_result = mysqli_query($db_connect, $db_works_query);
+$convert_array = mysqli_fetch_assoc($db_works_result);
 ?>
 <div class="app-content">
     <div class="content-wrapper ">
@@ -21,10 +21,10 @@ $convert_array = mysqli_fetch_assoc($db_services_result);
                                     <thead>
                                         <tr>
                                             <th scope="col">No</th>
-                                            <th scope="col">Service Title</th>
-                                            <th scope="col">Service Icon</th>
-                                            <th scope="col">Service Description</th>
-                                            <th scope="col">Service Status</th>
+                                            <th scope="col">Work Title</th>
+                                            <th scope="col">Work Image</th>
+                                            <th scope="col">Work Description</th>
+                                            <th scope="col">Work Status</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -32,23 +32,22 @@ $convert_array = mysqli_fetch_assoc($db_services_result);
                                         <!-- table colmun  -->
                                         <?php 
                                         $colmun_id = 0;
-                                        foreach ($db_services_result as  $service):
+                                        foreach ($db_works_result as  $work):
                                             $colmun_id++;
                                             ?>
                                             <tr>
                                             <th scope="row"><?=$colmun_id?></th>
-                                            <td><?= $service["service_title"]?></td>
-                                            <td><i class="<?= $service["service_icon"]?>"></i></td>
-                                            <td><?= $service["service_description"]?></td>
+                                            <td><?= $work["work_title"]?></td>
+                                            <td><img src="./img/work-imges/<?= $work["work_image"]?>" width="50px" alt=""></td>
+                                            <td><?= $work["work_description"]?></td>
                                             <td>
-                                                <?php if($service["service_status"] == "active"){
+                                                <?php if($work["work_status"] == "active"){
                                                     ?>
                                                     <span class="badge badge-success">
                                                         Active
                                                     </span>
                                                     <?php
                                                     }else{
-
                                                     ?>
                                                     <span class="badge badge-warning">
                                                         Inactive
@@ -59,8 +58,8 @@ $convert_array = mysqli_fetch_assoc($db_services_result);
                                             </td>
                                             <td>
                                                 <div >
-                                                    <a href="./update-service.php?id=<?=$service["ID"] ?>" class="btn btn-sm btn-primary">Edit</a>
-                                                    <a href="./auth/delete/service-delete.php?id=<?= $service["ID"]?>" class="btn btn-sm btn-danger">Delete</a>
+                                                    <a href="./update-service.php?id=<?=$work["ID"] ?>" class="btn btn-sm btn-primary">Edit</a>
+                                                    <a href="./auth/delete/work-delete.php?id=<?= $work["ID"]?>" class="btn btn-sm btn-danger">Delete</a>
                                                 </div>
                                             </td>
                                         </tr>
