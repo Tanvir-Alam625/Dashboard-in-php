@@ -28,9 +28,13 @@
     </head>
     <body class="theme-bg">
     <?php
+
     require_once("./dashboard/db_connect/db_connect.php");
     session_start();
     $user_id = $_SESSION["auth_id"];
+    if(!$user_id){
+        header("location: ./dashboard/auth/signin.php");
+    }
 
     // service select query 
     $service_query = "SELECT * FROM services WHERE service_status='active' LIMIT 6";
@@ -70,8 +74,8 @@
                         <div class="col-xl-12">
                             <div class="main-menu">
                                 <nav class="navbar navbar-expand-lg">
-                                    <a href="index.html" class="navbar-brand logo-sticky-none"><img src="img/logo/logo.png" alt="Logo"></a>
-                                    <a href="index.html" class="navbar-brand s-logo-none"><img src="img/logo/s_logo.png" alt="Logo"></a>
+                                    <a href="./index.php" class="navbar-brand logo-sticky-none"><img src="img/logo/logo.png" alt="Logo"></a>
+                                    <a href="./index.php" class="navbar-brand s-logo-none"><img src="img/logo/s_logo.png" alt="Logo"></a>
                                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                                         data-target="#navbarNav">
                                         <span class="navbar-icon"></span>

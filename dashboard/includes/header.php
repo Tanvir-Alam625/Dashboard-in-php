@@ -79,13 +79,31 @@
                     </li>
                     <li 
                         <?php
+                        if($page_name == 'add-testimonial.php' || $page_name == 'testimonial-list.php'):
+                            ?>
+                            class="active-page"
+                            <?php
+                            endif
+                        ?> >
+                        <a href="add-testimonial.php"><i class="material-icons-two-tone">add_reaction</i>Testimonial<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a class="<?= $page_name == 'add-testimonial.php' ? 'active': '' ?>" href="./add-testimonial.php">Add Testimonial</a>
+                            </li>
+                            <li>
+                                <a class="<?= $page_name == 'testimonial-list.php' ? 'active': '' ?>" href="./testimonial-list.php">Testimonial List</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li 
+                        <?php
                         if($page_name == 'add-portfolio.php' || $page_name == 'portfolio-list.php'):
                             ?>
                             class="active-page"
                             <?php
                             endif
                         ?> >
-                        <a href="add-service.php"><i class="material-icons-two-tone">manage_accounts</i>Portfolio<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <a href="add-portfolio.php"><i class="material-icons-two-tone">manage_accounts</i>Portfolio<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li>
                                 <a class="<?= $page_name == 'add-portfolio.php' ? 'active': '' ?>" href="./add-portfolio.php">Add Portfolio</a>
