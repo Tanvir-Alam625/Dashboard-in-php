@@ -24,22 +24,22 @@ require_once('./includes/header.php');
     ?>
      <!-- error message  -->
     <?php
-        if(isset($_SESSION['work_error']) || isset($_SESSION['testimonial_image_error'])){?>
+        if(isset($_SESSION['testimonial_error']) || isset($_SESSION['testimonial_image_error'])){?>
         <div class="d-flex justify-content-center">
             <div class="w-40 p-2 mb-2 d-flex justify-content-center align-items-center mx-auto rounded " style="background:red;" role="">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" height="20px" width="20px" class="text-white">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                 <p class="text-white text-center ml-10 my-0 p-10">
-                    <?= isset($_SESSION['work_error'])? $_SESSION['work_error']: ""?>
-                    <?= isset($_SESSION['work_image_error'])? $_SESSION['work_image_error']: ""?>
+                    <?= isset($_SESSION['testimonial_error'])? $_SESSION['testimonial_error']: ""?>
+                    <?= isset($_SESSION['testimonial_image_error'])? $_SESSION['testimonial_image_error']: ""?>
                 </p>
             </div>
         </div>
         <?php
         }
-    unset($_SESSION['work_error']);
-    unset($_SESSION['work_image_error']);
+    unset($_SESSION['testimonial_image_error']);
+    unset($_SESSION['testimonial_error']);
 
     ?>
                            

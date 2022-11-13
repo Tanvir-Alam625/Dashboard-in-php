@@ -14,7 +14,7 @@ $update_flag = false;
 if(isset($_POST["add_testimonial"])){
     if( !$testimonial_name  || !$testimonial_position || !$testimonial_status || !$testimonial_message || !$testimonial_image){
         $add_flag =true;
-        $_SESSION["work_error"] = "Input Field Is Required!";
+        $_SESSION["testimonial_error"] = "Input Field Is Required!";
     }else{
         $explod_file = explode(".", $testimonial_image); 
         $extension = end($explod_file);
@@ -27,7 +27,7 @@ if(isset($_POST["add_testimonial"])){
                 $file_tmp = $_FILES["testimonial_image"]["tmp_name"];
                 $new_file_path = "../img/testimonial-img/".$new_image_name;
                 move_uploaded_file($file_tmp,$new_file_path);
-                $db_query = "INSERT INTO `testimonials` (Name, Image, Status, Message, Position) VALUES ('$testimonial_name', '$testimonial_image', '$testimonial_status' , '$new_image_name', '$testimonial_position')";
+                $db_query = "INSERT INTO `testimonials` (Name, Image, Status, Message, Position) VALUES ('$testimonial_name', '$new_image_name', '$testimonial_status' ,'$testimonial_message', '$testimonial_position')";
                 mysqli_query($db_connect, $db_query);
                 $_SESSION["success_message"] = "Successfuly added testimonial";
                 header('location: ../add-testimonial.php');
@@ -39,6 +39,53 @@ if(isset($_POST["add_testimonial"])){
 
     }
 }
+
+
+// update testimonial 
+if(isset($_POST["update_testimonial"])){
+    $testimonial_id = $_POST["testimonial_id"];
+    if(!isset($_POST["testimonial_id"]) ||!$testimonial_name  || !$testimonial_position || !$testimonial_status || !$testimonial_message || !$testimonial_image){
+        $update_flag =true;
+        $_SESSION["testimonial_error"] = "Input Field Is Required!";
+    }else{
+        $explod_file = explode(".", $testimonial_image); 
+        $extension = end($explod_file);
+        if($extension ==="png" || $extension ==="jpg" || $extension ==="jpeg"){
+            if($_FILES["testimonial_image"]["size"] > 2000000){
+                $update_flag =true;
+                $_SESSION["testimonial_image_error"] = "File less then 2 mb!";
+            }else{
+             // delete image 
+            $load_image_query = "SELECT `Image` FROM testimonials WHERE ID=$testimonial_id";
+            $db_image = mysqli_query($db_connect, $load_image_query);
+            $db_image_result = mysqli_fetch_assoc($db_image);
+            unlink("../img/testimonial-img/".$db_image_result['Image']);
+            //update testimonial data
+            $new_image_name = $user_id."_".time().".".$extension;
+            $file_tmp = $_FILES["testimonial_image"]["tmp_name"];
+            $new_file_path = "../img/testimonial-img/".$new_image_name;
+            move_uploaded_file($file_tmp,$new_file_path);
+            $db_query = "UPDATE testimonials SET Name='$testimonial_name', Position='$testimonial_position', Status='$testimonial_status', Message='$testimonial_message', Image='$new_image_name' WHERE ID=$testimonial_id";
+            mysqli_query($db_connect, $db_query);
+            header('location: ../testimonial-list.php');
+            }
+            
+        }else{
+            $update_flag = true;
+            $_SESSION["work_image_error"] = "choose valid image!";
+        }
+    }
+
+}
+
+
+if($add_flag){
+    header("location: ../add-work.php");
+}
+if($update_flag){
+    header("location: ../testimonial-list.php");
+}
+
 
 if($add_flag){
     header("location: ../add-testimonial.php");

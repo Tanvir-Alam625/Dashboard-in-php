@@ -36,7 +36,7 @@
         header("location: ./dashboard/auth/signin.php");
     }
 
-    // service select query 
+    // service select query testimonials
     $service_query = "SELECT * FROM services WHERE service_status='active' LIMIT 6";
     $services = mysqli_query($db_connect, $service_query);
     // work select query 
@@ -46,6 +46,9 @@
     // portfolio select query 
     $portfolio_query = "SELECT * FROM portfolios WHERE portfolio_status='active' LIMIT 4";
     $portfolios = mysqli_query($db_connect, $portfolio_query);
+    // testimonial select query 
+    $testimonial_query = "SELECT * FROM testimonials WHERE Status='active' LIMIT 4";
+    $testimonials = mysqli_query($db_connect, $testimonial_query);
     // user info query 
     $db_user_query = "SELECT Email, Name,Image, ID, Phone, Address, Bio, Facebook, Linkedin, Instagram, Twitter FROM users WHERE ID='$user_id';";
     $db_user = mysqli_query($db_connect, $db_user_query);
@@ -371,30 +374,24 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-9 col-lg-10">
                             <div class="testimonial-active">
-                                <div class="single-testimonial text-center">
+                                <?php
+                                foreach ($testimonials as $testimonial) :?>
+                                 <div class="single-testimonial text-center">
                                     <div class="testi-avatar">
-                                        <img src="img/images/testi_avatar.png" alt="img">
+                                        <img style="width:100px; height:100px; object-fit: padding:3px; border:3px solid #fff; cover;  border-radius:50%;" src="./dashboard/img/testimonial-img/<?= $testimonial["Image"]?>" alt="img">
                                     </div>
                                     <div class="testi-content">
-                                        <h4><span>“</span> An event is a message sent by an object to signal the occur rence of an action. The action can causd user interaction such as a button click, or it can result <span>”</span></h4>
+                                        <h4><span>“</span><?= $testimonial["Message"]?> <span>”</span></h4>
                                         <div class="testi-avatar-info">
-                                            <h5>tonoy jakson</h5>
-                                            <span>head of idea</span>
+                                            <h5><?= $testimonial["Name"]?></h5>
+                                            <span><?= $testimonial["Position"]?></span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="single-testimonial text-center">
-                                    <div class="testi-avatar">
-                                        <img src="img/images/testi_avatar.png" alt="img">
-                                    </div>
-                                    <div class="testi-content">
-                                        <h4><span>“</span> An event is a message sent by an object to signal the occur rence of an action. The action can causd user interaction such as a button click, or it can result <span>”</span></h4>
-                                        <div class="testi-avatar-info">
-                                            <h5>tonoy jakson</h5>
-                                            <span>head of idea</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php
+                                    endforeach
+                                ?>
+                               
                             </div>
                         </div>
                     </div>
