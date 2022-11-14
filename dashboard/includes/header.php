@@ -80,6 +80,9 @@
                     <li class="<?= $page_name == 'profile.php' ? 'active-page': '' ?>">
                         <a href="./profile.php" class="active"><i class="material-icons-two-tone">face</i>Profile</a>
                     </li>
+                    <li class="<?= $page_name == 'client-message.php' ? 'active-page': '' ?>">
+                        <a href="./client-message.php" class="active"><i class="material-icons-two-tone">message</i>Client Message</a>
+                    </li>
                     <li 
                         <?php
                         if($page_name == 'add-testimonial.php' || $page_name == 'testimonial-list.php'):
@@ -124,7 +127,7 @@
                             <?php
                             endif
                         ?> >
-                        <a href="add-portfolio.php"><i class="material-icons-two-tone">manage_accounts</i>Brand<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <a href="add-portfolio.php"><i class="material-icons-two-tone">branding_watermark</i>Brand<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li>
                                 <a class="<?= $page_name == 'add-brand.php' ? 'active': '' ?>" href="./add-brand.php">Add Brand</a>
@@ -160,7 +163,7 @@
                             <?php
                             endif
                         ?> >
-                        <a href="add-education.php"><i class="material-icons-two-tone">work</i>Education<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <a href="add-education.php"><i class="material-icons-two-tone">school</i>Education<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li>
                                 <a class="<?= $page_name == 'add-education.php' ? 'active': '' ?>" href="./add-education.php" >Add Education</a>

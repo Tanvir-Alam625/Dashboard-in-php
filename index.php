@@ -386,6 +386,42 @@
             <!-- contact-area -->
             <section id="contact" class="contact-area primary-bg pt-120 pb-120">
                 <div class="container">
+                    <!-- succes message  -->
+                    <?php
+                        if(isset($_SESSION['mail_sent_message'])){?>
+                        <div class="d-flex justify-content-center">
+                            <div class="w-40 p-2 mb-2 d-flex justify-content-center align-items-center mx-auto rounded " style="background:green;" role="">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="text-white " height="20px" width="20px" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <p class="text-white text-center ml-10 my-0 p-10">
+                                    <?= $_SESSION['mail_sent_message']?>
+                                </p>
+                            </div>
+                        </div>
+                        <?php
+                        }
+                    unset($_SESSION['mail_sent_message']);
+                    ?>
+                     <!-- error message  -->
+                    <?php
+                        if(isset($_SESSION['message_error']) ){?>
+                        <div class="d-flex justify-content-center">
+                            <div class="w-70 p-2 mb-2 d-flex justify-content-center align-items-center mx-auto rounded " style="background:red;" role="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" height="20px" width="20px" class="text-white">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                <p class="text-white text-center ml-10 my-0 p-10">
+                                    <?= isset($_SESSION['message_error'])? $_SESSION['message_error']: ""?>
+                                   
+                                </p>
+                            </div>
+                        </div>
+                        <?php
+                        }
+                    unset($_SESSION['message_error']);
+
+                    ?>
                     <div class="row align-items-center">
                         <div class="col-lg-6">
                             <div class="section-title mb-20">
@@ -397,9 +433,9 @@
                                 <h5>OFFICE IN <span>NEW YORK</span></h5>
                                 <div class="contact-list">
                                     <ul>
-                                        <li><i class="fas fa-map-marker"></i><span>Address :</span>Event Center park WT 22 New York</li>
-                                        <li><i class="fas fa-headphones"></i><span>Phone :</span>+9 125 645 8654</li>
-                                        <li><i class="fas fa-globe-asia"></i><span>e-mail :</span>info@exemple.com</li>
+                                        <li><i class="fas fa-map-marker"></i><span>Address :</span><?= $db_user_result["Address"]?></li>
+                                        <li><i class="fas fa-headphones"></i><span>Phone :</span><?=$db_user_result["Phone"]?></li>
+                                        <li><i class="fas fa-globe-asia"></i><span>e-mail :</span><?= $db_user_result["Email"]?></li>
                                     </ul>
                                 </div>
                             </div>
@@ -407,9 +443,9 @@
                         <div class="col-lg-6">
                             <div class="contact-form">
                                 <form action="./dashboard/auth/email-data.php" method="post">
-                                    <input type="text" name="name" placeholder="your name *" required>
-                                    <input type="email" name="email" placeholder="your email *" required>
-                                    <textarea name="message" name="message" id="message" required placeholder="your message *"></textarea>
+                                    <input type="text" name="name" placeholder="your name *" >
+                                    <input type="email" name="email" placeholder="your email *" >
+                                    <textarea name="message" name="message" id="message" placeholder="your message *"></textarea>
                                     <button class="btn" type="submit">SEND</button>
                                 </form>
                             </div>
