@@ -115,6 +115,24 @@
                     </li>
                     <li 
                         <?php
+                        if($page_name == 'add-brand.php' || $page_name == 'brand-list.php'):
+                            ?>
+                            class="active-page"
+                            <?php
+                            endif
+                        ?> >
+                        <a href="add-portfolio.php"><i class="material-icons-two-tone">manage_accounts</i>Brand<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a class="<?= $page_name == 'add-brand.php' ? 'active': '' ?>" href="./add-brand.php">Add Brand</a>
+                            </li>
+                            <li>
+                                <a class="<?= $page_name == 'brand-list.php' ? 'active': '' ?>" href="./brand-list.php">Brand List</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li 
+                        <?php
                         if($page_name == 'add-work.php' || $page_name == 'work-list.php'):
                             ?>
                             class="active-page"

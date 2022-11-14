@@ -49,12 +49,14 @@
     // testimonial select query 
     $testimonial_query = "SELECT * FROM testimonials WHERE Status='active' LIMIT 4";
     $testimonials = mysqli_query($db_connect, $testimonial_query);
+    // brand select query 
+    $brand_query = "SELECT * FROM brands WHERE Status='active'";
+    $brands = mysqli_query($db_connect, $brand_query);
     // user info query 
     $db_user_query = "SELECT Email, Name,Image, ID, Phone, Address, Bio, Facebook, Linkedin, Instagram, Twitter FROM users WHERE ID='$user_id';";
     $db_user = mysqli_query($db_connect, $db_user_query);
     $db_user_result = mysqli_fetch_assoc($db_user);
-
-
+    
     ?>
 
         <!-- preloader -->
@@ -403,36 +405,16 @@
             <div class="barnd-area pt-100 pb-100">
                 <div class="container">
                     <div class="row brand-active">
-                        <div class="col-xl-2">
-                            <div class="single-brand">
-                                <img src="img/brand/brand_img01.png" alt="img">
+                        <?php
+                        foreach ($brands as  $brand):?>
+                            <div class="col-xl-2">
+                                <div class="single-brand">
+                                    <img src="./dashboard/img/brand-img/<?= $brand["Image"]?>" alt="imgimaisfjskfjsdf">
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-xl-2">
-                            <div class="single-brand">
-                                <img src="img/brand/brand_img02.png" alt="img">
-                            </div>
-                        </div>
-                        <div class="col-xl-2">
-                            <div class="single-brand">
-                                <img src="img/brand/brand_img03.png" alt="img">
-                            </div>
-                        </div>
-                        <div class="col-xl-2">
-                            <div class="single-brand">
-                                <img src="img/brand/brand_img04.png" alt="img">
-                            </div>
-                        </div>
-                        <div class="col-xl-2">
-                            <div class="single-brand">
-                                <img src="img/brand/brand_img05.png" alt="img">
-                            </div>
-                        </div>
-                        <div class="col-xl-2">
-                            <div class="single-brand">
-                                <img src="img/brand/brand_img03.png" alt="img">
-                            </div>
-                        </div>
+                            <?php
+                        endforeach
+                        ?>
                     </div>
                 </div>
             </div>

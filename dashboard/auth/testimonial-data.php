@@ -72,7 +72,7 @@ if(isset($_POST["update_testimonial"])){
             
         }else{
             $update_flag = true;
-            $_SESSION["work_image_error"] = "choose valid image!";
+            $_SESSION["testimonial_image_error"] = "choose valid image!";
         }
     }
 
@@ -80,16 +80,12 @@ if(isset($_POST["update_testimonial"])){
 
 
 if($add_flag){
-    header("location: ../add-work.php");
+    header("location: ../add-testimonial.php");
 }
 if($update_flag){
     header("location: ../testimonial-list.php");
 }
 
-
-if($add_flag){
-    header("location: ../add-testimonial.php");
-}
 
 
 
