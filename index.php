@@ -52,6 +52,9 @@
     // brand select query 
     $brand_query = "SELECT * FROM brands WHERE Status='active'";
     $brands = mysqli_query($db_connect, $brand_query);
+    // brand select query 
+    $education_query = "SELECT * FROM educations WHERE Status='active'";
+    $educations = mysqli_query($db_connect, $education_query);
     // user info query 
     $db_user_query = "SELECT Email, Name,Image, ID, Phone, Address, Bio, Facebook, Linkedin, Instagram, Twitter FROM users WHERE ID='$user_id';";
     $db_user = mysqli_query($db_connect, $db_user_query);
@@ -156,7 +159,7 @@
                             <div class="banner-content">
                                 <h6 class="wow fadeInUp" data-wow-delay="0.2s">HELLO!</h6>
                                 <h2 class="wow fadeInUp" data-wow-delay="0.4s">I am <?= $db_user_result["Name"]?></h2>
-                                <p class="wow fadeInUp" data-wow-delay="0.6s"><?= $db_user_result["Bio"]?></p>
+                                <p class="wow fadeInUp" title="<?=$db_user_result["Bio"]?>" data-wow-delay="0.6s"><?= substr($db_user_result["Bio"],0,150)."..."?></p>
                                 <div class="banner-social wow fadeInUp" data-wow-delay="0.8s">
                                     <ul>
                                     <li><a href="<?= $db_user_result["Facebook"]?>" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
@@ -202,63 +205,23 @@
                                 <h3>Education:</h3>
                             </div>
                             <!-- Education Item -->
+                            <?php
+                            foreach ($educations as  $education):?>
                             <div class="education">
-                                <div class="year">2020</div>
+                                <div class="year"><?= $education["Year"]?></div>
                                 <div class="line"></div>
                                 <div class="location">
-                                    <span>PHD of Interaction Design &amp; Animation</span>
+                                    <span><?=$education["Name"]?> &amp; Animation</span>
                                     <div class="progressWrapper">
                                         <div class="progress">
-                                            <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 65%;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: <?=$education["Credit"]?>%;" aria-valuenow="<?=$education["Credit"]?>" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- End Education Item -->
-                            <!-- Education Item -->
-                            <div class="education">
-                                <div class="year">2016</div>
-                                <div class="line"></div>
-                                <div class="location">
-                                    <span>Master of Database Administration</span>
-                                    <div class="progressWrapper">
-                                        <div class="progress">
-                                            <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Education Item -->
-                            <!-- Education Item -->
-                            <div class="education">
-                                <div class="year">2010</div>
-                                <div class="line"></div>
-                                <div class="location">
-                                    <span>Bachelor of Computer Engineering</span>
-                                    <div class="progressWrapper">
-                                        <div class="progress">
-                                            <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Education Item -->
-                            <!-- Education Item -->
-                            <div class="education">
-                                <div class="year">2005</div>
-                                <div class="line"></div>
-                                <div class="location">
-                                    <span>Diploma of Computer</span>
-                                    <div class="progressWrapper">
-                                        <div class="progress">
-                                            <div class="progress-bar wow slideInLefts" data-wow-delay="0.2s" data-wow-duration="2s" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Education Item -->
+                            <?php
+                            endforeach
+                            ?>
                         </div>
                     </div>
                 </div>

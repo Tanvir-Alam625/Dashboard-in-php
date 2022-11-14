@@ -67,7 +67,10 @@
                 </div>
             </div>
             <div class="app-menu">
-                <ul class="accordion-menu">
+                <ul class="accordion-menu "
+                
+                style="overflow-y: scroll; height:600px;"
+                >
                     <li class="sidebar-title">
                         Apps
                     </li>
@@ -146,6 +149,24 @@
                             </li>
                             <li>
                                 <a class="<?= $page_name == 'work-list.php' ? 'active': '' ?>" href="./work-list.php">Work List</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li 
+                        <?php
+                        if($page_name == 'add-education.php' || $page_name == 'education-list.php'):
+                            ?>
+                            class="active-page"
+                            <?php
+                            endif
+                        ?> >
+                        <a href="add-education.php"><i class="material-icons-two-tone">work</i>Education<i class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
+                        <ul class="sub-menu">
+                            <li>
+                                <a class="<?= $page_name == 'add-education.php' ? 'active': '' ?>" href="./add-education.php" >Add Education</a>
+                            </li>
+                            <li>
+                                <a class="<?= $page_name == 'education-list.php' ? 'active': '' ?>" href="./education-list.php">Education List</a>
                             </li>
                         </ul>
                     </li>
