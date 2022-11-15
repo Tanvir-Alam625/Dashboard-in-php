@@ -4,10 +4,9 @@ require_once('./includes/header.php');
 $email =$_SESSION['auth_email'];
 
 // user name query
-$db_user_query = "SELECT Name, ID, Phone, Address, Bio, Facebook, Linkedin, Instagram, Twitter FROM users WHERE Email='$email';";
+$db_user_query = "SELECT Name, ID, Phone, Address, Bio, Facebook, Linkedin, Instagram, Twitter, Image  FROM users WHERE Email='$email';";
 $db_user = mysqli_query($db_connect, $db_user_query);
 $db_user_result = mysqli_fetch_assoc($db_user);
-
 
 ?>
 
@@ -34,6 +33,47 @@ $db_user_result = mysqli_fetch_assoc($db_user);
     .active{
         display: block;
     }
+    /*  file design  */
+    .image-upload-container{
+        margin:0px auto;
+        padding: 0px 50px;
+        display: flex;
+        justify-content:center;
+
+    }
+    .img-container{
+        height:134px;
+        width:134px;
+        border-radius:50%;
+        background: lightgray;
+        border:4px solid #709EF8;
+        cursor: pointer;
+        transition:300ms ease-in-out;
+    }
+    .img-container:hover img{
+        display: none;
+    }
+    .img-containe .icon{
+        display:none;
+    }
+    .img-containe:hover .img-containe .icon{
+        display: block;
+    }
+
+    .img-container .profile-img{
+        height:125px;
+        width:125px;
+        border-radius:50%;
+        background: lightgray;
+        position: relative;
+        object-fit: cover;
+    }
+    .img-containe .icon img{
+        border-radius: 50%;
+        display:hidden;
+    }
+
+
     </style>
     <div class="content-wrapper">
         <div class="container">
@@ -72,6 +112,23 @@ $db_user_result = mysqli_fetch_assoc($db_user);
                         <div class="card-header">
                             <h5 class="card-title">Info</h5>
                         </div>
+                        <!-- <div class="image-upload-container ">
+                            <form action="" method="post" enctype="multipart/form-data">
+                                <div class="file">
+                                    <input type="file" id="file" name="profile_img" hidden>
+                                    <label for="file">
+                                        
+                                        <div class="img-container">
+                                        <img class="profile-img" src="./img/profile-img/<?= $db_user_result["Image"] ?>" class="avatar" alt="">
+                                        <div class="icon">
+                                        <img class="icon-img" width='100' height='100' src="./img/file-icon.png" alt="file-img">
+                                        </div>
+                                        </div>
+                                    </label>
+                                </div>
+                               
+                            </form>
+                        </div> -->
                         <div class="card-body">
                             <div class="example-container">
                                 <div class="example-content">

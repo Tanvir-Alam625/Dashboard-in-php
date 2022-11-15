@@ -41,8 +41,8 @@ $convert_array = mysqli_fetch_assoc($db_messages_result);
                                                 <td title="<?= $message["Message"]?>"><?=substr( $message["Message"],0,60)?></td>
                                                 <td>
                                                     <div>
-                                                        <a href="mailto:<?=$message["Email"]?>" target="_blank" class="btn btn-sm btn-primary">Reply</a>
-                                                        <a href="./auth/delete/client-message-delete.php?id=<?= $message["ID"]?>" class="btn btn-sm btn-danger">Delete</a>
+                                                        <a href="mailto:<?=$message["Email"]?>" target="_blank" class="btn btn-sm btn-primary fs-9">Reply</a>
+                                                        <a href="./auth/delete/client-message-delete.php?id=<?= $message["ID"]?>" class="btn fs-8 btn-sm btn-danger">Delete</a>
                                                     </div>
                                                 </td>
                                             </tr>

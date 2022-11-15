@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html class="no-js" lang="en">
 <!-- Mirrored from themebeyond.com/html/kufa/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 06 Feb 2020 06:27:43 GMT -->
