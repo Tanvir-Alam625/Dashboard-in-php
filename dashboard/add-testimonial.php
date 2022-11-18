@@ -1,9 +1,8 @@
+<!-- require header  -->
 <?php
 require_once('./includes/header.php');
 ?>
-
-
-
+<!-- section html tags  -->
 <div class="app-content">
     <!-- succes message  -->
     <?php
@@ -87,7 +86,7 @@ require_once('./includes/header.php');
         </div>
     </div>
 </div>
-
+<!-- require footer  -->
 <?php
 require_once('./includes/footer.php');
 ?>

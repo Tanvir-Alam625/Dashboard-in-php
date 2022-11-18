@@ -8,7 +8,7 @@ $db_work_result = mysqli_query($db_connect, $db_work_query);
 $work_query_convert_array = mysqli_fetch_assoc($db_work_result); 
 ?>
 
-
+<!-- section html tags  -->
 <div class="app-content">
     <!-- succes message  -->
     <?php
@@ -102,7 +102,7 @@ $work_query_convert_array = mysqli_fetch_assoc($db_work_result);
         </div>
     </div>
 </div>
-
+<!-- require footer tags  -->
 <?php
 require_once('./includes/header.php');
 ?>

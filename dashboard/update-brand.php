@@ -8,7 +8,7 @@ $db_brand_result = mysqli_query($db_connect, $db_brand_query);
 $brand_query_convert_array = mysqli_fetch_assoc($db_brand_result); 
 ?>
 
-
+<!-- section html tags  -->
 <div class="app-content">
     <!-- succes message  -->
     <?php
@@ -45,7 +45,6 @@ $brand_query_convert_array = mysqli_fetch_assoc($db_brand_result);
         }
     unset($_SESSION['brand_image_error']);
     unset($_SESSION['brand_error']);
-
     ?>
                            
     <div class="content-wrapper ">
@@ -92,7 +91,7 @@ $brand_query_convert_array = mysqli_fetch_assoc($db_brand_result);
         </div>
     </div>
 </div>
-
+<!-- require footer  -->
 <?php
 require_once('./includes/header.php');
 ?>

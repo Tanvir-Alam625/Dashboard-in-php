@@ -1,10 +1,12 @@
 <?php
+// require header 
 require_once('./includes/header.php');
 // message insert query 
 $db_messages_query = "SELECT * FROM messages ;";
 $db_messages_result = mysqli_query($db_connect, $db_messages_query);
 $convert_array = mysqli_fetch_assoc($db_messages_result);
 ?>
+<!-- section html tags  -->
 <div class="app-content">
     <div class="content-wrapper ">
         <div class="container">
@@ -51,6 +53,7 @@ $convert_array = mysqli_fetch_assoc($db_messages_result);
                                         ?>
                                     </tbody>
                                 </table>
+                                <!-- empty data  -->
                                 <?php
                                  if(!$convert_array ==1){
                                     ?>

@@ -16,6 +16,7 @@ if(isset($_POST["add_brand"])){
     }else{
         $explod_file = explode(".", $brand_image); 
         $extension = end($explod_file);
+        // Image validation 
         if($extension ==="png" || $extension ==="jpg" || $extension ==="jpeg"){
             if($_FILES["brand_image"]["size"] > 2000000){
                 $add_flag =true;
@@ -48,6 +49,7 @@ if(isset($_POST["update_brand"])){
     }else{
         $explod_file = explode(".", $brand_image); 
         $extension = end($explod_file);
+        // Image validation 
         if($extension ==="png" || $extension ==="jpg" || $extension ==="jpeg"){
             if($_FILES["brand_image"]["size"] > 2000000){
                 $update_flag =true;
@@ -76,10 +78,11 @@ if(isset($_POST["update_brand"])){
 
 }
 
-
+// add testimonial location 
 if($add_flag){
     header("location: ../add-brand.php");
 }
+// update testimonial location 
 if($update_flag){
     $brand_id = $_POST["brand_id"];
     header("location: ../update-brand.php?id=$brand_id");

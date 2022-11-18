@@ -1,11 +1,13 @@
+
+<!-- header  -->
 <?php
 require_once('./includes/header.php');
 session_start();
 ?>
 
-
+<!-- section tags  -->
 <div class="app-content">
-    <!-- succes message  -->
+    <!-- success message  -->
     <?php
         if(isset($_SESSION['success_message'])){?>
         <div class="d-flex justify-content-center">
@@ -39,7 +41,7 @@ session_start();
         }
     unset($_SESSION['education_error']);
     ?>
-                           
+
     <div class="content-wrapper ">
         <div class="container">
             <div class="row justify-content-center ">
@@ -81,6 +83,7 @@ session_start();
     </div>
 </div>
 
+<!-- footer  -->
 <?php
 require_once('./includes/header.php');
 ?>

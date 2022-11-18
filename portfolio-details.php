@@ -27,6 +27,7 @@
     </head>
     <body class="theme-bg">
         <?php
+        // db require 
             require_once("./dashboard/db_connect/db_connect.php");
             session_start();
             $id = $_GET["id"];

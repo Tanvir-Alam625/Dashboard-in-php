@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once('../db_connect/db_connect.php');
+
+// input value store into variables 
 $name = htmlspecialchars(trim($_POST["name"]));
 $phone = htmlspecialchars($_POST["phone"]);
 $address = htmlspecialchars(trim($_POST["address"]));
@@ -14,8 +16,11 @@ $email_explode = explode("@",$email);
 $email_first_name = $email_explode[0];
 $id = $_SESSION["auth_id"];
 $flag = false;
+
+
 // image upload condition 
 if(isset($_POST["update-info"])){
+    // Image upload 
     if($_FILES["profile_pic"]["name"] != ""){
         $image_name = $_FILES["profile_pic"]["name"];
         $convert_image_name =explode(".",$image_name);
@@ -24,6 +29,7 @@ if(isset($_POST["update-info"])){
         $tem_name = $_FILES["profile_pic"]["tmp_name"];
         $file_path = "../img/profile-img/".$new_image_name;
         move_uploaded_file($tem_name, $file_path);
+        // BD query 
         $img_update_query = "UPDATE users SET Image='$new_image_name' WHERE ID =$id";
         $img_update_db = mysqli_query($db_connect, $img_update_query);
         $_SESSION["success_message"]= "Your info Successfully Upated";
@@ -125,12 +131,13 @@ if($linkedin){
 
 
 
-
+// error location 
 if($flag){
     header("location: ../profile.php");
 }
 
 
+// user info update query 
 if(!$flag){
     $info_update_query = "UPDATE users SET Name='$name', Phone='$phone',Address='$address', Bio='$bio', Facebook='$facebook', Instagram='$instagram', Twitter='$twitter', Linkedin='$linkedin' WHERE ID =$id";
     $info_update_db = mysqli_query($db_connect, $info_update_query);

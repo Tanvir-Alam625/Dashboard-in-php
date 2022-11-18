@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once('../db_connect/db_connect.php');
+// input value store into variable 
 $education_name = htmlspecialchars(trim($_POST["education_name"])); 
 $education_credit = htmlspecialchars(trim($_POST["education_credit"])); 
 $education_year = htmlspecialchars(trim($_POST["education_year"])); 
@@ -39,14 +40,14 @@ if(isset($_POST["update_education"])){
     }
 }
 
-
+// redirect the  add education 
 if($flag){
     header('location: ../add-education.php');
 }
 
+// redirect the update education 
 if($update_flag){
     $education_id = htmlspecialchars($_POST["education_id"]);
-
     header("location: ../update-education.php?id=<?=$education_id?>");
 }
 

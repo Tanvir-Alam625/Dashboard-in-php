@@ -1,12 +1,14 @@
 <?php
 session_start();
 require_once('../db_connect/db_connect.php');
+// input value store into variable 
 $name = htmlspecialchars($_POST['name']);
 $email = htmlspecialchars($_POST['email']);
 $password = htmlspecialchars($_POST['password']);
 $Cpassword = htmlspecialchars($_POST['confirm-password']);
 $hashed_password = sha1($password);
 $flag = false;
+// database query 
 $db_query_check = "SELECT COUNT(*) as 'result' FROM users WHERE Email='$email';";
 $db_object_convert= mysqli_query($db_connect, $db_query_check);
 $db_result = mysqli_fetch_assoc($db_object_convert);

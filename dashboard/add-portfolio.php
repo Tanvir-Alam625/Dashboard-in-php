@@ -1,8 +1,10 @@
+<!-- require header & icon  -->
 <?php
 require_once('./includes/header.php');
 require_once("./Icon/Icon.php");
 session_start();
 ?>
+<!-- section html tags  -->
 <div class="app-content">
         <!-- succes message  -->
         <?php
@@ -89,10 +91,11 @@ session_start();
         </div>
     </div>
 </div>
-
+<!-- require footer  -->
 <?php
 require_once('./includes/header.php');
 ?>
+<!-- icon javaScript logic  -->
 <script>
     const fonts = document.querySelectorAll(".fontsIconPortfolio");
     const iconValue= document.getElementById("iconValuePortfolio");

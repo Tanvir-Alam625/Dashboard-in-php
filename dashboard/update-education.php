@@ -8,7 +8,7 @@ $db_education_result = mysqli_query($db_connect, $db_education_query);
 $education_query_convert_array = mysqli_fetch_assoc($db_education_result); 
 ?>
 
-
+<!-- section html tags  -->
 <div class="app-content">
     <!-- succes message  -->
     <?php
@@ -92,6 +92,7 @@ $education_query_convert_array = mysqli_fetch_assoc($db_education_result);
         </div>
     </div>
 </div>
+<!-- require footer  -->
 <?php
 require_once('./includes/header.php');
 ?>

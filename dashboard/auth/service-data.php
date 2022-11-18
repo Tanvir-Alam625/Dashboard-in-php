@@ -1,6 +1,8 @@
 <?php
 session_start();
 require_once('../db_connect/db_connect.php');
+
+// input value store into variables 
 $service_title = htmlspecialchars(trim($_POST["service_title"])); 
 $service_icon = htmlspecialchars(trim($_POST["service_icon"])); 
 $service_status= htmlspecialchars(trim($_POST["service_status"])); 
@@ -18,18 +20,17 @@ if(isset($_POST["add_service"])){
         mysqli_query($db_connect, $db_query);
         $_SESSION["success_message"] = "Successfuly added service";
         header('location: ../add-service.php');
-    }
-    
+    }    
 }
 
 // update service query 
-
 if(isset($_POST["update_service"])){
     $service_id = htmlspecialchars($_POST["service_id"]);
     if(!$service_title || !$service_icon || !$service_status || !$service_description || !$service_id){
         $flag =true;
         $_SESSION["service_error"] = "Input Field Is Required!";
     }else{
+
         //service update query with 
         $service_update_query = "UPDATE services SET service_title='$service_title', service_icon='$service_icon', service_status='$service_status', service_description='$service_description' WHERE ID ='$service_id'";
         mysqli_query($db_connect, $service_update_query);
@@ -38,7 +39,7 @@ if(isset($_POST["update_service"])){
     }
 }
 
-
+// error location 
 if($flag){
     header('location: ../add-service.php');
 }

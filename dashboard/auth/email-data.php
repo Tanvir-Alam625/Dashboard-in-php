@@ -1,14 +1,16 @@
 <?php
 require_once('../db_connect/db_connect.php');
 session_start();
+// input value store into variables 
 $name = htmlspecialchars(trim($_POST["name"]));
 $email = htmlspecialchars(trim($_POST["email"]));
 $message = htmlspecialchars(trim($_POST["message"]));
-
+// form validation logic 
 if(!$name && !$email && !$message){
     $_SESSION["message_error"]= "Input Field required!";
     header("location: ../../index.php#contact");
 }
+    // DB query 
     $message_query = "INSERT INTO `messages` (Name, Email, Message) VALUES ('$name', '$email', '$message')";
 	mysqli_query($db_connect, $message_query);
     // php mailer code 
@@ -40,6 +42,7 @@ if(!$name && !$email && !$message){
         //Content
         $mail->isHTML(true);                             
         $mail->Subject = "Client Message $name";
+        // message body html template
         $mail->Body    = "
         <div style='width: 600px; margin:0px auto; background:#fcfdff;'>
 
@@ -52,14 +55,14 @@ if(!$name && !$email && !$message){
         <h5 style='text-align:center; background:#464646; padding:10px; font-size: 12px;  font-weight: 300; color: aliceblue; margin: 0px;'>$email</h5>
         </div>
         ";
+        // success message 
         $_SESSION["mail_sent_message"]= "Congratulation your message sent!";
         header("location: ../../index.php#contact");
         $mail->send();
     } catch (Exception $e) {
+        // error message 
         $_SESSION["message_error"]= "server error!";
         header("location: ../../index.php#contact");
         // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
-
-
 ?>

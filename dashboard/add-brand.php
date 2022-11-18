@@ -38,7 +38,7 @@ require_once('./includes/header.php');
     unset($_SESSION['brand_image_error']);
     unset($_SESSION['brand_error']);
     ?>
-                           
+              <!-- section html tags               -->
     <div class="content-wrapper ">
         <div class="container">
             <div class="row justify-content-center ">
@@ -75,7 +75,7 @@ require_once('./includes/header.php');
         </div>
     </div>
 </div>
-
+<!-- footer  -->
 <?php
 require_once('./includes/footer.php');
 ?>

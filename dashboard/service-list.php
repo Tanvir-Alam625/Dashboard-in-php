@@ -5,6 +5,7 @@ $db_services_query = "SELECT * FROM services ;";
 $db_services_result = mysqli_query($db_connect, $db_services_query);
 $convert_array = mysqli_fetch_assoc($db_services_result);
 ?>
+<!-- section html tags  -->
 <div class="app-content">
     <div class="content-wrapper ">
         <div class="container">
@@ -69,6 +70,7 @@ $convert_array = mysqli_fetch_assoc($db_services_result);
                                         ?>
                                     </tbody>
                                 </table>
+                                <!-- empty data  -->
                                 <?php
                                  if(!$convert_array ==1){
                                     ?>

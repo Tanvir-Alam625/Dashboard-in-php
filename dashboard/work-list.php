@@ -5,6 +5,7 @@ $db_works_query = "SELECT * FROM works ;";
 $db_works_result = mysqli_query($db_connect, $db_works_query);
 $convert_array = mysqli_fetch_assoc($db_works_result);
 ?>
+<!-- section html tags  -->
 <div class="app-content">
     <div class="content-wrapper ">
         <div class="container">
@@ -68,6 +69,7 @@ $convert_array = mysqli_fetch_assoc($db_works_result);
                                         ?>
                                     </tbody>
                                 </table>
+                                <!-- empty data  -->
                                 <?php
                                  if(!$convert_array ==1){
                                     ?>
@@ -84,6 +86,7 @@ $convert_array = mysqli_fetch_assoc($db_works_result);
         </div>
     </div>
 </div>
+<!-- require footer  -->
 <?php
 require_once('./includes/footer.php');
 ?>

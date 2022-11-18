@@ -8,7 +8,7 @@ $db_testimonial_result = mysqli_query($db_connect, $db_testimonial_query);
 $testimonial_query_convert_array = mysqli_fetch_assoc($db_testimonial_result); 
 ?>
 
-
+<!-- section html tags  -->
 <div class="app-content">
     <!-- succes message  -->
     <?php
@@ -102,7 +102,7 @@ $testimonial_query_convert_array = mysqli_fetch_assoc($db_testimonial_result);
         </div>
     </div>
 </div>
-
+<!-- require footer  -->
 <?php
 require_once('./includes/header.php');
 ?>

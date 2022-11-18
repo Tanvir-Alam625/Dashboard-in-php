@@ -1,6 +1,7 @@
 <?php
-session_start();
 require_once('../db_connect/db_connect.php');
+session_start();
+// input value store into variables 
     $email = htmlspecialchars(trim($_POST['email']));
     $password  = htmlspecialchars(trim($_POST['password']));
     $hashed_password = sha1($password);
@@ -26,6 +27,7 @@ require_once('../db_connect/db_connect.php');
         $flag = true;
         $_SESSION["signin_password_error"]= "Password Field Required!";
     }
+    // error location 
     if($flag){
         header('location: ./signin.php');
     }

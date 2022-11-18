@@ -10,7 +10,7 @@ $service_query_convert_array = mysqli_fetch_assoc($db_service_result);
 
 ?>
 
-
+<!-- section html tags  -->
 <div class="app-content">
     <!-- success message  -->
     <?php
@@ -104,11 +104,11 @@ $service_query_convert_array = mysqli_fetch_assoc($db_service_result);
         </div>
     </div>
 </div>
-
+<!-- require footer  -->
 <?php
 require_once('./includes/header.php');
 ?>
-
+<!-- icon JS logic  -->
 <script>
     const fonts = document.querySelectorAll(".fontsIconService");
     const iconValue= document.getElementById("iconValueService");

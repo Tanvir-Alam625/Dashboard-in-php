@@ -5,6 +5,7 @@ $db_educations_query = "SELECT * FROM educations ;";
 $db_educations_result = mysqli_query($db_connect, $db_educations_query);
 $convert_array = mysqli_fetch_assoc($db_educations_result);
 ?>
+<!-- section html tags  -->
 <div class="app-content">
     <div class="content-wrapper ">
         <div class="container">
@@ -68,8 +69,9 @@ $convert_array = mysqli_fetch_assoc($db_educations_result);
                                         ?>
                                     </tbody>
                                 </table>
+                                <!-- empty data  -->
                                 <?php
-                                 if(!$convert_array ==1){
+                                 if(!$convert_array == 1){
                                     ?>
                                     <h3 class="my-3 text-center ">No Found Data</h3>
                                     <?php

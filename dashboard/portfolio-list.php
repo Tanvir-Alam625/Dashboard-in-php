@@ -5,7 +5,7 @@ $db_portfolio_query = "SELECT * FROM portfolios ;";
 $db_portfolio_result = mysqli_query($db_connect, $db_portfolio_query);
 $convert_array = mysqli_fetch_assoc($db_portfolio_result);
 ?>
-
+<!-- section html tags  -->
 <div class="app-content">
     <div class="content-wrapper ">
         <div class="container">
@@ -31,6 +31,7 @@ $convert_array = mysqli_fetch_assoc($db_portfolio_result);
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <!-- table column  -->
                                     <?php
                                         $colmun_id = 0;
                                         foreach ($db_portfolio_result as  $portfolio):
@@ -70,8 +71,9 @@ $convert_array = mysqli_fetch_assoc($db_portfolio_result);
                                         ?>
                                     </tbody>
                                 </table>
+                                <!-- empty data  -->
                                 <?php
-                                 if(!$convert_array ==1){
+                                 if(!$convert_array == 1){
                                     ?>
                                     <h3 class="my-3 text-center ">No Found Data</h3>
                                     <?php

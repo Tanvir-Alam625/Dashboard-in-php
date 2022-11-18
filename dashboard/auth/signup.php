@@ -1,18 +1,17 @@
+<!-- header require  -->
 <?php
 require_once('./includes/header.php');
 session_start();
 ?>
-
+<!-- html tags  -->
 <div class="app app-auth-sign-up align-content-stretch d-flex flex-wrap justify-content-end">
 <div class="app-auth-background">
-
 </div>
 <div class="app-auth-container">
 <div class="logo">
-<a href="index.html">Neptune</a>
+<a href="#">Neptune</a>
 </div>
 <p class="auth-description">Please enter your credentials to create an account.<br>Already have an account? <a href="signin.php">Sign In</a></p>
-
 <form action="./signup-data.php" method="post" autocomplete="on">
 	<div class="auth-credentials m-b-xxl">
 		<label for="signUpUsername" class="form-label">Name</label>
@@ -100,7 +99,7 @@ session_start();
 <button type="submit" class="btn btn-primary">Sign Up</button>
 </div>
 </form>
-<!-- this is script tags -->
+<!-- password hide show js logic-->
 <script>
 	const passcode = document.querySelectorAll('[show-hide="password"]');
 	function getHidePassword(){
@@ -115,6 +114,7 @@ session_start();
 <div class="divider"></div>
 </div>
 </div>
+<!-- footer require  -->
 <?php
 require_once('./includes/footer.php');
 ?>

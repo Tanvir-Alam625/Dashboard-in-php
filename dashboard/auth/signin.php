@@ -1,8 +1,9 @@
+<!-- require header -->
 <?php
 require_once('./includes/header.php');
 session_start();
 ?>
-
+<!-- html tags  -->
 <div class="app app-auth-sign-in align-content-stretch d-flex flex-wrap justify-content-end">
     <div class="app-auth-background"></div>
     <form action="./signin-data.php" method="post">
@@ -75,6 +76,7 @@ session_start();
         </div>        
     </form>
 </div>
+<!-- footer require  -->
 <?php
 require_once('./includes/footer.php');
 ?>

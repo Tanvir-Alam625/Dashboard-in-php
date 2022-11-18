@@ -16,8 +16,10 @@ if(isset($_POST["add_testimonial"])){
         $add_flag =true;
         $_SESSION["testimonial_error"] = "Input Field Is Required!";
     }else{
+        // Image upload 
         $explod_file = explode(".", $testimonial_image); 
         $extension = end($explod_file);
+        // Image validation 
         if($extension ==="png" || $extension ==="jpg" || $extension ==="jpeg"){
             if($_FILES["testimonial_image"]["size"] > 2000000){
                 $add_flag =true;
@@ -27,6 +29,7 @@ if(isset($_POST["add_testimonial"])){
                 $file_tmp = $_FILES["testimonial_image"]["tmp_name"];
                 $new_file_path = "../img/testimonial-img/".$new_image_name;
                 move_uploaded_file($file_tmp,$new_file_path);
+                // DB Query 
                 $db_query = "INSERT INTO `testimonials` (Name, Image, Status, Message, Position) VALUES ('$testimonial_name', '$new_image_name', '$testimonial_status' ,'$testimonial_message', '$testimonial_position')";
                 mysqli_query($db_connect, $db_query);
                 $_SESSION["success_message"] = "Successfuly added testimonial";
@@ -48,6 +51,7 @@ if(isset($_POST["update_testimonial"])){
         $update_flag =true;
         $_SESSION["testimonial_error"] = "Input Field Is Required!";
     }else{
+        // Image upload 
         $explod_file = explode(".", $testimonial_image); 
         $extension = end($explod_file);
         if($extension ==="png" || $extension ==="jpg" || $extension ==="jpeg"){
@@ -78,10 +82,11 @@ if(isset($_POST["update_testimonial"])){
 
 }
 
-
+// redicet for add testimonial 
 if($add_flag){
     header("location: ../add-testimonial.php");
 }
+// redicet for update testimonial 
 if($update_flag){
     header("location: ../testimonial-list.php");
 }

@@ -1,10 +1,13 @@
+
 <?php
+//  require header
 require_once('./includes/header.php');
 // brand insert query 
 $db_brands_query = "SELECT * FROM brands ;";
 $db_brands_result = mysqli_query($db_connect, $db_brands_query);
 $convert_array = mysqli_fetch_assoc($db_brands_result);
 ?>
+<!-- section html tags  -->
 <div class="app-content">
     <div class="content-wrapper">
         <div class="container">
@@ -66,8 +69,9 @@ $convert_array = mysqli_fetch_assoc($db_brands_result);
                                         ?>
                                     </tbody>
                                 </table>
+                                <!-- empty table  -->
                                 <?php
-                                 if(!$convert_array ==1){
+                                 if(!$convert_array == 1){
                                     ?>
                                     <h3 class="my-3 text-center ">No Found Data</h3>
                                     <?php
@@ -82,6 +86,7 @@ $convert_array = mysqli_fetch_assoc($db_brands_result);
         </div>
     </div>
 </div>
+<!-- require footer -->
 <?php
 require_once('./includes/footer.php');
 ?>

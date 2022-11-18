@@ -1,13 +1,11 @@
 <?php
 require_once('../db_connect/db_connect.php');
 session_start();
-
+// input value store into variables 
 $portfolio_title = htmlspecialchars(trim($_POST["portfolio_title"])); 
 $portfolio_icon = htmlspecialchars(trim($_POST["portfolio_icon"])); 
 $portfolio_status= htmlspecialchars(trim($_POST["portfolio_status"])); 
 $portfolio_count = htmlspecialchars(trim($_POST["portfolio_count"]));
-
-
 $flag = false;
 // add portfolio 
 if(isset($_POST["add_portfolio"])){
@@ -21,6 +19,8 @@ if(isset($_POST["add_portfolio"])){
         header('location: ../add-portfolio.php');
     }
 }
+
+
 // update portfolio 
 if(isset($_POST["update_portfolio"])){
     print_r($_POST);
@@ -36,6 +36,7 @@ if(isset($_POST["update_portfolio"])){
     }
 }
 
+// redirect location 
 if($flag){
     header('location: ../add-portfolio.php');
 }
